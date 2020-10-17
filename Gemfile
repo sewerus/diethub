@@ -66,6 +66,8 @@ gem 'high_voltage'
 gem 'jquery-rails'
 gem 'pg'
 gem 'therubyracer', :platform=>:ruby
+# gem 'mini_racer', platforms: :ruby
+gem 'autoprefixer-rails', '8.6.5'
 gem 'unicorn'
 gem 'unicorn-rails'
 
