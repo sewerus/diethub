@@ -1,0 +1,19 @@
+<% if user_signed_in? %>
+    <li class='nav-item'>
+      <%= link_to users_path(current_user), class: 'nav-link' do %>
+          <span class="glyphicon glyphicon-user" aria-hidden="true">
+
+          </span>
+          Moje konto
+      <% end %>
+    </li>
+    <li class='nav-item'>
+      <%#= link_to edit_password_path, class: 'nav-link' do %>
+      <span class="glyphicon glyphicon-wrench" aria-hidden="true">
+
+      </span>
+      Zmiana hasła
+      <%# end %>
+    </li>
+
+<% end %>

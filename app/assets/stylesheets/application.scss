@@ -13,3 +13,35 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap";
+
+body {
+  //background-color: black;
+  color: white;
+}
+
+a {
+  color: darkolivegreen;
+}
+
+.main-frame {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 900px;
+  width: 100%;
+  padding-top: 15px;
+}
+
+#content {
+  border: 2px solid darkolivegreen;
+  background-color: rgba(white, 0.1);
+
+  padding-top: 35px;
+  padding-bottom: 35px;
+  border-radius: 5px;
+  max-width: 2000px;
+  margin: 0 30px 0 30px;
+  width: calc(100% - 60px);
+}

@@ -1,0 +1,42 @@
+#main-users {
+  background-image: url("pineaple.jpg");
+}
+
+#main-login {
+  background-image: url("apple_1.jpg");
+  text-align: center;
+
+  .fields {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .field {
+      padding: 10px;
+    }
+  }
+
+  input[type=email], input[type=password] {
+    background-color: transparent;
+    min-width: 200px;
+    border: none;
+    border-bottom: 1px solid darkolivegreen;
+    color: white;
+  }
+  input[type=submit] {
+    background-color: rgb(15, 15, 15);
+    border: 2px solid darkolivegreen;
+    border-radius: 3px;
+    color: white;
+    width: 20%;
+    height: 35px;
+  }
+
+  @media (max-width: 768px) {
+    .fields {
+      flex-direction: column;
+    }
+    input[type=submit] {
+      width: 90%;
+    }
+  }
+}
