@@ -67,11 +67,16 @@
   .contact-data-tr {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
-    width: auto;
   }
   .contact-data-td {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
     padding: 10px 30px 10px 30px;
     margin: 10px 10px 0 10px;
 

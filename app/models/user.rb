@@ -29,6 +29,17 @@ class User < ApplicationRecord
     user
   end
 
+  def reset_password(current_user = nil)
+    unless current_user.nil?
+      if !current_user.is_a? Admin
+        return "Nie masz uprawnień do zmiany hasła dla admina"
+      end
+    end
+    new_password = SecureRandom.hex[0..11].gsub("O", 'o').gsub("0", 'o').gsub("I", "L").gsub("l", "L")
+    self.update_attribute(:password, new_password)
+    "Nowe hasło użytkownika: " + new_password
+  end
+
   filterrific(
       default_filter_params: {sorted_by: 'created_at_desc'},
       available_filters: [
