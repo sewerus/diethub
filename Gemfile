@@ -72,6 +72,7 @@ gem 'unicorn'
 gem 'unicorn-rails'
 
 gem 'filterrific'
+gem 'will_paginate'
 
 group :development do
   gem 'better_errors'

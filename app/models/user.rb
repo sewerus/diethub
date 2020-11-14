@@ -44,6 +44,7 @@ class User < ApplicationRecord
       default_filter_params: {sorted_by: 'created_at_desc'},
       available_filters: [
           :sorted_by,
+          :search_type,
           :search_name,
           :search_email,
           :search_pesel,
@@ -55,18 +56,36 @@ class User < ApplicationRecord
           :created_at_lt
       ]
   )
+  scope :search_type, lambda { |query|
+    return nil if query.blank?
+    terms = query.mb_chars.downcase.split(/\s+/)
+    terms = terms.map { |e| ''
+    ('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
+    }
+    num_or_conds = 1
+    where(
+        terms.map { |term|
+          "(
+            LOWER(users.type) LIKE ?
+          )"
+        }.join(' AND '),
+        *terms.map { |e| [e] * num_or_conds }.flatten
+    )
+  }
   scope :search_name, lambda { |query|
     return nil if query.blank?
     terms = query.mb_chars.downcase.split(/\s+/)
     terms = terms.map { |e| ''
     ('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
     }
-    num_or_conds = 3
+    num_or_conds = 2
     where(
         terms.map { |term|
-          "(LOWER(users.name) LIKE ?
-          OR
-          LOWER(users.surname) LIKE ?"
+          "(
+            LOWER(users.name) LIKE ?
+            OR
+            LOWER(users.surname) LIKE ?
+          )"
         }.join(' AND '),
         *terms.map { |e| [e] * num_or_conds }.flatten
     )
@@ -174,7 +193,7 @@ class User < ApplicationRecord
       when /^created_at_/
         order("users.created_at #{ direction }")
       when /^name_/
-        order("LOWER(users.name) #{ direction }, LOWER(users.surname) #{ direction }")
+        order(Arel.sql("LOWER(users.name) #{ direction }, LOWER(users.surname) #{ direction }"))
       when /^email_/
         order("LOWER(users.email) #{ direction }")
       else

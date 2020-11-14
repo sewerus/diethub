@@ -73,10 +73,7 @@
     margin-bottom: 5px;
   }
   .contact-data-td {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
+    min-width: 200px;
     padding: 10px 30px 10px 30px;
     margin: 10px 10px 0 10px;
 
@@ -111,7 +108,7 @@
       border-bottom: 1px solid darkolivegreen;
     }
   }
-  .contact-data-tr:first-child {
+  .contact-data-tr:only-child {
     .contact-data-td {
       border-top: 1px solid darkolivegreen;
       border-bottom: 1px solid darkolivegreen;
@@ -125,7 +122,7 @@
 .index-new-menu {
   @extend .contact-data-table;
   margin-top: 5px;
-  margin-bottom: -25px;
+  //margin-bottom: -25px;
   padding: 5px;
 }
 
@@ -143,4 +140,12 @@
     margin: 5px;
     padding: 5px;
   }
+}
+
+select {
+  background-color: rgb(15, 15, 15);
+  border: 2px solid darkolivegreen;
+  border-radius: 3px;
+  color: white;
+  height: 35px;
 }

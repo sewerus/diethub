@@ -1,32 +1,86 @@
+<%= form_for_filterrific @filterrific do |f| %>
+
+<div class="index-new-menu">
+  <div class="index-new-tr">
+    <div class="index-new-td">
+      Sortuj po
+      <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by], class: "filterrific-periodically-observed") %>
+      <div>
+        Liczba wyświetlanych użytkowników: <span id="filterrific_count"><%= @users.count %></span>
+      </div>
+      <div class="apple_pagination">
+        <%= will_paginate @users, :container => false %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="contact-data-table">
   <div class="contact-data-tr">
     <div class="contact-data-td">
-      Rola
+      Rola<br>
+      <%= f.select(
+              :search_type,
+              [["Admin", "Admin"], ["Pacjent", "Patient"], ["Dietetyk", "Dietician"]],
+              include_blank: "Nie wybrano",
+              class: 'filterrific-periodically-observed', size: 11
+          ) %>
     </div>
     <div class="contact-data-td">
-      Imię i nazwisko
+      Imię i nazwisko<br>
+      <%= f.text_field(
+              :search_name,
+              class: 'filterrific-periodically-observed', size: 11
+          ) %>
     </div>
     <div class="contact-data-td">
-      Adres email
+      Adres email<br>
+      <%= f.text_field(
+              :search_email,
+              class: 'filterrific-periodically-observed', size: 11
+          ) %>
     </div>
     <div class="contact-data-td">
-      Numer telefonu
+      Numer telefonu<br>
+      <%= f.text_field(
+              :search_tel,
+              class: 'filterrific-periodically-observed', size: 11
+          ) %>
     </div>
     <div class="contact-data-td">
-      Miasto
+      Miasto<br>
+      <%= f.text_field(
+              :search_city,
+              class: 'filterrific-periodically-observed', size: 11
+          ) %>
     </div>
     <div class="contact-data-td">
-      Ulica
+      Ulica<br>
+      <%= f.text_field(
+              :search_street,
+              class: 'filterrific-periodically-observed', size: 11
+          ) %>
     </div>
     <div class="contact-data-td">
-      Kod pocztowy
+      Kod pocztowy<br>
+      <%= f.text_field(
+              :search_post_code,
+              class: 'filterrific-periodically-observed', size: 11
+          ) %>
     </div>
     <div class="contact-data-td">
-      PESEL
+      PESEL<br>
+      <%= f.text_field(
+              :search_pesel,
+              class: 'filterrific-periodically-observed', size: 11
+          ) %>
     </div>
   </div>
-    <%= render(
-        partial: "users/users_list",
-        locals: {users: users}
-        ) %>
 </div>
+<div class="contact-data-table" id="filterrific_results">
+        <%= render(
+                partial: "users/users_list",
+                locals: {users: users}
+            ) %>
+</div>
+<% end %>
