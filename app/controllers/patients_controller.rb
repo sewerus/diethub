@@ -1,0 +1,2 @@
+class PatientsController < UsersController
+end

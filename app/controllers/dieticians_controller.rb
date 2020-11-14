@@ -1,0 +1,2 @@
+class DieticiansController < UsersController
+end

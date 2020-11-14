@@ -1,0 +1,10 @@
+<div id="main-admins" class="main-frame">
+  <div id="content">
+    <h2>Admin <%= @user.full_name %></h2>
+
+    <%= render(
+        partial: "users/contact_data",
+        locals: {user: @user}
+        ) %>
+  </div>
+</div>

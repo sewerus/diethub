@@ -1,0 +1,57 @@
+<%= form_for user, action: :update do |f| %>
+    <div class="edit-contact-data-table">
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Imię:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :name %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Nazwisko:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :surname %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Adres email:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :email %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Telefon:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :tel %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Ulica:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :street %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Miasto:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :city %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Kod pocztowy:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :post_code %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">PESEL:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :pesel %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td button-link">
+            <%= f.submit "Zapisz" %>
+        </div>
+      </div>
+    </div>
+<% end %>

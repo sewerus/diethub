@@ -1,3 +1,36 @@
-<% User.all.each do |user| %>
-    <%= user.email %><br>
-<% end %>
+<div id="main-users" class="main-frame">
+  <div id="content">
+    <h2>Lista użytkowników</h2>
+
+    <div class="index-new-menu">
+    <div class="index-new-tr">
+      <div class="index-new-td">
+        <%= link_to new_admin_path do %>
+            <div class="button-link">
+              Nowy administrator
+            </div>
+        <% end %>
+      </div>
+      <div class="index-new-td">
+        <%= link_to new_dietician_path do %>
+            <div class="button-link">
+              Nowy dietetyk
+            </div>
+        <% end %>
+      </div>
+      <div class="index-new-td">
+        <%= link_to new_patient_path do %>
+            <div class="button-link">
+              Nowy pacjent
+            </div>
+        <% end %>
+      </div>
+    </div>
+    </div>
+
+    <%= render(
+          partial: "users/users_table",
+          locals: {users: @users}
+        ) %>
+  </div>
+</div>

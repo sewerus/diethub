@@ -1,0 +1,2 @@
+class Dietician < User
+end

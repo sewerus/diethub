@@ -1,0 +1,6 @@
+<% users.each do |user| %>
+    <%= render(
+        partial: "users/user_tr",
+        locals: {user: user}
+        ) %>
+<% end %>

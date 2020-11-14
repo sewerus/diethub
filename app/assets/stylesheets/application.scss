@@ -50,8 +50,10 @@ a {
 }
 
 #content {
+  overflow-x: auto;
+  scrollbar-color: darkolivegreen rgb(15, 15, 15);
   border: 2px solid darkolivegreen;
-  background-color: rgba(white, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 
   padding-top: 35px;
   padding-bottom: 35px;
@@ -68,4 +70,27 @@ a {
     width: calc(95% - 60px);
     transition-duration: 4s;
   }
+}
+
+div.button-link {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 30px 10px 30px;
+  margin: 10px 10px 0 10px;
+  border: 1px solid darkolivegreen;
+  width:100%;
+}
+
+input[type=email], input[type=password], input[type=text] {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid darkolivegreen;
+  color: white;
+}
+input[type=submit] {
+  background-color: transparent;
+  border: 2px solid darkolivegreen;
+  border-radius: 3px;
+  color: white;
+  width: 100%;
+  height: 35px;
 }

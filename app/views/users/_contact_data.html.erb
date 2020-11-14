@@ -1,0 +1,45 @@
+<div class="contact-data-table">
+  <div class="contact-data-tr">
+    <div class="contact-data-td">Adres email:</div>
+    <div class="contact-data-td">
+      <%= mail_to user.email %>
+    </div>
+  </div>
+  <% unless user.tel.to_s.empty? %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Telefon:</div>
+        <div class="contact-data-td">
+          <%= user.tel %>
+        </div>
+      </div>
+  <% end %>
+  <% if !user.street.to_s.empty? or !user.city.to_s.empty? or !user.post_code.to_s.empty? %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Adres:</div>
+        <div class="contact-data-td">
+          <%= user.street %><br>
+          <%= user.city %>, <%= user.post_code %>
+        </div>
+      </div>
+  <% end %>
+  <% unless user.pesel.to_s.empty? %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">PESEL:</div>
+        <div class="contact-data-td">
+          <%= user.pesel %>
+        </div>
+      </div>
+  <% end %>
+
+  <% if current_user.is_a? Admin %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">
+          <%= link_to edit_user_path(user) do %>
+              <div class="button-link">
+                Edycja
+              </div>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
+</div>

@@ -1,0 +1,10 @@
+<div id="main-edit-user" class="main-frame">
+  <div id="content">
+    <h2>Nowy dietetyk</h2>
+
+    <%= render(
+            partial: "users/new_form",
+            locals: {user: @user, type: "Dietician"}
+        ) %>
+  </div>
+</div>

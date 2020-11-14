@@ -71,6 +71,8 @@ gem 'autoprefixer-rails', '8.6.5'
 gem 'unicorn'
 gem 'unicorn-rails'
 
+gem 'filterrific'
+
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

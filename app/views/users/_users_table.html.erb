@@ -1,0 +1,32 @@
+<div class="contact-data-table">
+  <div class="contact-data-tr">
+    <div class="contact-data-td">
+      Rola
+    </div>
+    <div class="contact-data-td">
+      Imię i nazwisko
+    </div>
+    <div class="contact-data-td">
+      Adres email
+    </div>
+    <div class="contact-data-td">
+      Numer telefonu
+    </div>
+    <div class="contact-data-td">
+      Miasto
+    </div>
+    <div class="contact-data-td">
+      Ulica
+    </div>
+    <div class="contact-data-td">
+      Kod pocztowy
+    </div>
+    <div class="contact-data-td">
+      PESEL
+    </div>
+  </div>
+    <%= render(
+        partial: "users/users_list",
+        locals: {users: users}
+        ) %>
+</div>
