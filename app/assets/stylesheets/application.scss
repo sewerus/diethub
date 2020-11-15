@@ -47,6 +47,7 @@ a {
     margin-left: 10px;
   }
 }
+
 .menu-head {
   font-size: 50px;
   text-align: center;
@@ -78,6 +79,10 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 }
 
 .main-frame {
