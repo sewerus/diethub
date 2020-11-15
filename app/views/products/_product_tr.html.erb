@@ -1,0 +1,26 @@
+<div class="contact-data-tr">
+  <div class="contact-data-td">
+    <%= link_to product.author.full_name, user_path(product.author) %>
+  </div>
+  <div class="contact-data-td">
+    <%= link_to product.title, product_path(product) %>
+  </div>
+  <div class="contact-data-td">
+    <%= product.calories %>
+  </div>
+  <div class="contact-data-td">
+    <%= product.fat %>
+  </div>
+  <div class="contact-data-td">
+    <%= product.carbo %>
+  </div>
+  <div class="contact-data-td">
+    <%= product.protein %>
+  </div>
+  <div class="contact-data-td">
+    <%= product.unit %>
+  </div>
+  <div class="contact-data-td">
+    <%= product.description %>
+  </div>
+</div>

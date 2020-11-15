@@ -130,7 +130,7 @@ div.button-link {
   width:100%;
 }
 
-input[type=email], input[type=password], input[type=text] {
+input[type=email], input[type=password], input[type=text], textarea, input[type='number'] {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid darkolivegreen;

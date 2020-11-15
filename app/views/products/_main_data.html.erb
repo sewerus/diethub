@@ -1,0 +1,70 @@
+<div class="contact-data-table">
+  <% unless product.description.to_s.empty? %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Opis:</div>
+        <div class="contact-data-td">
+          <%= product.description %>
+        </div>
+      </div>
+  <% end %>
+  <% unless product.calories.to_s.empty? %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Kalorie<br>[na 100g]:</div>
+        <div class="contact-data-td">
+          <%= product.calories %>
+        </div>
+      </div>
+  <% end %>
+  <% unless product.fat.to_s.empty? %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Tłuszcze<br>[na 100g]:</div>
+        <div class="contact-data-td">
+          <%= product.fat %> g
+        </div>
+      </div>
+  <% end %>
+  <% unless product.carbo.to_s.empty? %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Węglowodany<br>[na 100g]:</div>
+        <div class="contact-data-td">
+          <%= product.carbo %> g
+        </div>
+      </div>
+  <% end %>
+  <% unless product.protein.to_s.empty? %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Białko<br>[na 100g]:</div>
+        <div class="contact-data-td">
+          <%= product.protein %> g
+        </div>
+      </div>
+  <% end %>
+  <% unless product.unit.to_s.empty? %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Jednostka:</div>
+        <div class="contact-data-td">
+          <%= product.unit %>
+          <br>
+          1 <%= product.amount_text(1) %> to <%= product.unit_amount %> g
+        </div>
+      </div>
+  <% end %>
+  <div class="contact-data-tr">
+    <div class="contact-data-td">Autor:</div>
+    <div class="contact-data-td">
+      <%= link_to product.author.full_name, user_path(product.author) %>
+    </div>
+  </div>
+
+  <% if product.can_be_edited?(current_user) %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">
+          <%= link_to edit_product_path(product) do %>
+              <div class="button-link">
+                Edycja
+              </div>
+              </div>
+          <% end %>
+          </div>
+  <% end %>
+</div>

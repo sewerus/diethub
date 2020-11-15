@@ -1,0 +1,88 @@
+<%= form_for_filterrific @filterrific do |f| %>
+
+    <div class="index-new-menu">
+      <div class="index-new-tr">
+        <div class="index-new-td">
+          Sortuj po
+          <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by], class: "filterrific-periodically-observed") %>
+          <div>
+            Liczba wyświetlanych produktów: <span id="filterrific_count"><%= @products.count %></span>
+          </div>
+          <div class="apple_pagination">
+            <%= will_paginate @products, :container => false %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-data-table">
+      <div class="contact-data-tr">
+        <div class="contact-data-td">
+          Autor<br>
+          <%= f.text_field(
+                  :search_author,
+                  class: 'filterrific-periodically-observed', size: 11
+              ) %>
+        </div>
+        <div class="contact-data-td">
+          Nazwa<br>
+          <%= f.text_field(
+                  :search_title,
+                  class: 'filterrific-periodically-observed', size: 11
+              ) %>
+        </div>
+        <div class="contact-data-td">
+          Kalorie <br>[na 100g]<br>
+          od
+          <%= f.text_field(:search_calories_gte, class: 'filterrific-periodically-observed') %>
+          <br>
+          do
+          <%= f.text_field(:search_calories_lt, class: 'filterrific-periodically-observed') %>
+        </div>
+        <div class="contact-data-td">
+          Tłuszcze <br>[na 100g]<br>
+          od
+          <%= f.text_field(:search_fat_gte, class: 'filterrific-periodically-observed') %>
+          <br>
+          do
+          <%= f.text_field(:search_fat_lt, class: 'filterrific-periodically-observed') %>
+        </div>
+        <div class="contact-data-td">
+          Węglowodany <br>[na 100g]<br>
+          od
+          <%= f.text_field(:search_carbo_gte, class: 'filterrific-periodically-observed') %>
+          <br>
+          do
+          <%= f.text_field(:search_carbo_lt, class: 'filterrific-periodically-observed') %>
+        </div>
+        <div class="contact-data-td">
+          Białko <br>[na 100g]<br>
+          od
+          <%= f.text_field(:search_protein_gte, class: 'filterrific-periodically-observed') %>
+          <br>
+          do
+          <%= f.text_field(:search_protein_lt, class: 'filterrific-periodically-observed') %>
+        </div>
+        <div class="contact-data-td">
+          Jednostka<br>
+          <%= f.text_field(
+                  :search_unit,
+                  class: 'filterrific-periodically-observed', size: 11
+              ) %>
+        </div>
+        <div class="contact-data-td">
+          Opis<br>
+          <%= f.text_field(
+                  :search_description,
+                  class: 'filterrific-periodically-observed', size: 11
+              ) %>
+        </div>
+      </div>
+    </div>
+    <div class="contact-data-table" id="filterrific_results">
+      <%= render(
+              partial: "products/products_list",
+              locals: {products: products}
+          ) %>
+    </div>
+<% end %>

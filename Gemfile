@@ -75,6 +75,7 @@ gem 'filterrific'
 gem 'will_paginate'
 gem 'select2-rails'
 gem 'bootstrap-glyphicons'
+gem 'client_side_validations'
 
 group :development do
   gem 'better_errors'

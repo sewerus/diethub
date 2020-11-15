@@ -73,9 +73,12 @@
     margin-bottom: 5px;
   }
   .contact-data-td {
-    min-width: 200px;
+    width: 230px;
     padding: 10px 30px 10px 30px;
     margin: 10px 10px 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     &:first-child {
       border-top: 1px solid darkolivegreen;

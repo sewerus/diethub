@@ -1,0 +1,61 @@
+<%= form_for product, url: update_product_path(product), method: :patch, validate: true do |f| %>
+    <div class="edit-contact-data-table">
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Nazwa:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :title %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Opis:</div>
+        <div class="contact-data-td">
+          <%= f.text_area :description %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">
+          Jednostka<br>
+          format: "l.poj./l.mn."<br>
+          przykład: "sztuka/sztuki":
+        </div>
+        <div class="contact-data-td">
+          <%= f.text_field :unit %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Masa jednostki [g]:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :unit_amount %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Kalorie [na 100g]:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :calories %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Tłuszcze [na 100g]:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :fat %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Węglowodany [na 100g]:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :carbo %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Białko [na 100g]:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :protein %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td button-link">
+          <%= f.submit "Zapisz" %>
+        </div>
+      </div>
+    </div>
+<% end %>

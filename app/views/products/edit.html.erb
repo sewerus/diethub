@@ -1,0 +1,10 @@
+<div id="main-edit-product" class="main-frame">
+  <div id="content">
+    <h2>Edycja składnika: <%= @product.title %></h2>
+
+    <%= render(
+            partial: "products/edit_form",
+            locals: {product: @product}
+        ) %>
+  </div>
+</div>

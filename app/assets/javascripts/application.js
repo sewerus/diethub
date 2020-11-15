@@ -18,4 +18,5 @@
 //= require bootstrap-sprockets
 //= require filterrific/filterrific-jquery
 //= require select2
+//= require rails.validations
 //= require_tree .

@@ -1,0 +1,6 @@
+<% products.each do |product| %>
+    <%= render(
+        partial: "products/product_tr",
+        locals: {product: product}
+        ) %>
+<% end %>

@@ -1,0 +1,18 @@
+<div id="main-products" class="main-frame">
+  <div id="content">
+    <h2>Składnik: <%= @product.title %></h2>
+
+    <%= render(
+        partial: "products/main_data",
+        locals: {product: @product}
+        ) %>
+  </div>
+  <div id="next-content">
+    <h4>Lista potraw</h4>
+
+    <%#= render(
+            partial: "users/users_table",
+            locals: {users: @user.patients, no_roles: true}
+        ) %>
+  </div>
+</div>

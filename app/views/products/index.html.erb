@@ -1,0 +1,21 @@
+<div id="main-products" class="main-frame">
+  <div id="content">
+    <h2>Lista składników</h2>
+
+    <div class="index-new-menu">
+      <div class="index-new-tr">
+        <div class="index-new-td">
+          <%= link_to new_product_path do %>
+              <div class="button-link">
+                Nowy składnik
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%= render(
+            partial: "products/products",
+            locals: {products: @products}
+        ) %>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<% js = escape_javascript(
+  render(partial: 'products/products_list', locals: { products: @products })
+) %>
+$("#filterrific_results").html("<%= js %>");
+$("#filterrific_count").html("<%= @products.count.to_s %>");
