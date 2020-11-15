@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   #root
-  root to: 'users#index'
+  root to: 'pages#start_page'
 
   #devise
   devise_for :users
@@ -19,5 +19,5 @@ Rails.application.routes.draw do
     end
   end
   get '/users/:id/reset_password' => 'users#reset_password', as: :reset_password
-
+  get '/my_patients' => 'patients#my_patients', as: :my_patients
 end

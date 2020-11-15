@@ -126,6 +126,10 @@
   padding: 5px;
 }
 
+#next-content h4 {
+  @extend .contact-data-table;
+}
+
 .index-new-tr {
   @extend .contact-data-tr;
   margin: 5px;

@@ -20,24 +20,52 @@ class User < ApplicationRecord
     end
   end
 
-  def self.save_new(params)
+  def self.save_new(params, current_user)
     user_data = params.require(:user).permit(:name, :surname, :email, :tel, :street, :city, :post_code, :pesel, :type)
     user_data[:password] = SecureRandom.hex
     user = User.create(user_data)
     user.password = SecureRandom.hex.to_s
     user.save!
+    if current_user.is_a? Dietician
+      user.dietician = current_user
+    end
     user
   end
 
   def reset_password(current_user = nil)
-    unless current_user.nil?
-      if !current_user.is_a? Admin
-        return "Nie masz uprawnień do zmiany hasła dla admina"
-      end
-    end
     new_password = SecureRandom.hex[0..11].gsub("O", 'o').gsub("0", 'o').gsub("I", "L").gsub("l", "L")
     self.update_attribute(:password, new_password)
     "Nowe hasło użytkownika: " + new_password
+  end
+
+  def has_access_to_user?(user_id)
+    if self.is_a? Admin
+      true
+    elsif self.is_a? Dietician
+      user_id == self.id or user_id.in? self.patient_ids
+    else
+      false
+    end
+  end
+
+  def can_show_user?(user_id)
+    if self.is_a? Admin
+      true
+    elsif self.is_a? Dietician
+      user_id == self.id or user_id.in? self.patient_ids
+    else
+      user_id == self.id
+    end
+  end
+
+  def can_reset_password?(user_id)
+    if self.is_a? Admin
+      true
+    elsif self.is_a? Dietician
+      user_id.in? self.patient_ids
+    else
+      false
+    end
   end
 
   filterrific(

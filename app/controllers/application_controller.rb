@@ -10,4 +10,22 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, alert: "Brak dostępu!"
     end
   end
+
+  def who_has_access_to_user(user)
+    unless current_user.has_access_to_user?(user.id)
+      redirect_to root_path, alert: "Brak dostępu!"
+    end
+  end
+
+  def who_can_show_user(user)
+    unless current_user.can_show_user?(user.id)
+      redirect_to root_path, alert: "Brak dostępu!"
+    end
+  end
+
+  def who_can_reset_password(user)
+    unless current_user.can_reset_password?(user.id)
+      redirect_to root_path, alert: "Brak dostępu!"
+    end
+  end
 end

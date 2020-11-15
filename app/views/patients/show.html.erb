@@ -2,6 +2,16 @@
   <div id="content">
     <h2>Pacjent <%= @user.full_name %></h2>
 
+    <h4>
+      Przypisany dietetyk:
+      <% dietician = @user.dietician %>
+      <% if dietician.nil? %>
+        brak
+      <% else %>
+        <%= link_to dietician.full_name, dietician_path(dietician) %>
+      <% end %>
+    </h4>
+
     <%= render(
         partial: "users/contact_data",
         locals: {user: @user}

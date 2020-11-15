@@ -73,6 +73,8 @@ gem 'unicorn-rails'
 
 gem 'filterrific'
 gem 'will_paginate'
+gem 'select2-rails'
+gem 'bootstrap-glyphicons'
 
 group :development do
   gem 'better_errors'

@@ -11,8 +11,26 @@ class UsersController < ApplicationController
       :edit_password,
       :update_password
   ]
+  before_action :admin_only, only: [
+      :index,
+      :destroy
+  ]
+  before_action only: [
+      :edit,
+      :update
+  ] do who_has_access_to_user(@user)
+  end
+  before_action only: [
+      :show
+  ] do who_can_show_user(@user)
+  end
+  before_action only: [
+      :reset_password
+  ] do who_can_reset_password(@user)
+  end
 
   def index
+    @title = "Lista wszystkich użytkowników"
     users = User.all
     filterrific_users(users)
 
@@ -26,7 +44,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -36,11 +53,9 @@ class UsersController < ApplicationController
   end
 
   def show
-
   end
 
   def destroy
-
   end
 
   def new
@@ -48,7 +63,7 @@ class UsersController < ApplicationController
   end
 
   def save_new
-    @user = User.save_new(params)
+    @user = User.save_new(params, current_user)
     redirect_to user_path(@user)
   end
 
@@ -88,7 +103,7 @@ class UsersController < ApplicationController
     elsif @user.is_a? Dietician
       params.require(:dietician).permit(:name, :surname, :email, :tel, :street, :city, :post_code, :pesel)
     elsif @user.is_a? Patient
-      params.require(:patient).permit(:name, :surname, :email, :tel, :street, :city, :post_code, :pesel)
+      params.require(:patient).permit(:name, :surname, :email, :tel, :street, :city, :post_code, :pesel, :dietician_id)
     end
   end
 

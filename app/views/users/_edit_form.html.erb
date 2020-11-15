@@ -48,6 +48,23 @@
           <%= f.text_field :pesel %>
         </div>
       </div>
+      <% if user.is_a? Patient %>
+          <div class="contact-data-tr">
+            <div class="contact-data-td">Dietetyk</div>
+            <div class="contact-data-td">
+                  <% if user.dietician.nil? %>
+                      <%= f.select :dietician_id, Dietician.all.map { |dietician| [dietician.full_name.first(30), dietician.id] }, {include_blank: true}, {class: 'form-control'} %>
+                  <% else %>
+                      <%= f.select :dietician_id, Dietician.all.map { |dietician| [dietician.full_name.first(30), dietician.id] }, {include_blank: true, selected: user.dietician.id}, {class: 'form-control'} %>
+                  <% end %>
+              <script>
+                $( "#patient_dietician_id" ).select2({
+                  theme: "bootstrap"
+                });
+              </script>
+            </div>
+          </div>
+      <% end %>
       <div class="contact-data-tr">
         <div class="contact-data-td button-link">
             <%= f.submit "Zapisz" %>

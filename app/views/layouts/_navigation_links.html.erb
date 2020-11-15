@@ -1,19 +1,69 @@
-<% if user_signed_in? %>
-    <li class='nav-item'>
-      <%= link_to user_path(current_user), class: 'nav-link' do %>
-          <span class="glyphicon glyphicon-user" aria-hidden="true">
+<% if current_user.is_a? Admin %>
 
-          </span>
-          Moje konto
-      <% end %>
-    </li>
-    <li class='nav-item'>
-      <%= link_to edit_password_path, class: 'nav-link' do %>
-      <span class="glyphicon glyphicon-wrench" aria-hidden="true">
+    <div class="menu-box">
+      <div class="menu-head">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+      </div>
+      <div>
+        <ul class="nav navbar-nav">
 
-      </span>
-      Zmiana hasła
-      <% end %>
-    </li>
+          <li class='nav-item'>
+            &nbsp;
+          </li>
+          <li class='nav-item'>
+            <%= link_to users_path, class: 'nav-link' do %>
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>Użytkownicy
+            <% end %>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+<% elsif current_user.is_a? Dietician %>
+
+    <div class="menu-box">
+      <div class="menu-head">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+      </div>
+      <div>
+        <ul class="nav navbar-nav">
+
+          <li class='nav-item'>
+            <%= link_to new_patient_path, class: 'nav-link' do %>
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Nowy pacjent
+            <% end %>
+          </li>
+          <li class='nav-item'>
+            <%= link_to my_patients_path, class: 'nav-link' do %>
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>Lista pacjentów
+            <% end %>
+          </li>
+
+        </ul>
+      </div>
+    </div>
 
 <% end %>
+
+<div class="menu-box">
+  <div class="menu-head">
+    <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+  </div>
+  <div>
+    <ul class="nav navbar-nav">
+
+      <li class='nav-item'>
+        <%= link_to root_path, class: 'nav-link' do %>
+            <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>Składniki
+        <% end %>
+      </li>
+      <li class='nav-item'>
+        <%= link_to root_path, class: 'nav-link' do %>
+            <span class="glyphicon glyphicon-book" aria-hidden="true"></span>Posiłki
+        <% end %>
+      </li>
+
+    </ul>
+  </div>
+</div>

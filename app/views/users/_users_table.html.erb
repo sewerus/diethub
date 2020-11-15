@@ -1,3 +1,4 @@
+<% no_roles ||= false %>
 <%= form_for_filterrific @filterrific do |f| %>
 
 <div class="index-new-menu">
@@ -17,15 +18,17 @@
 
 <div class="contact-data-table">
   <div class="contact-data-tr">
-    <div class="contact-data-td">
-      Rola<br>
-      <%= f.select(
-              :search_type,
-              [["Admin", "Admin"], ["Pacjent", "Patient"], ["Dietetyk", "Dietician"]],
-              include_blank: "Nie wybrano",
-              class: 'filterrific-periodically-observed', size: 11
-          ) %>
-    </div>
+    <% unless no_roles %>
+      <div class="contact-data-td">
+        Rola<br>
+        <%= f.select(
+                :search_type,
+                [["Admin", "Admin"], ["Pacjent", "Patient"], ["Dietetyk", "Dietician"]],
+                include_blank: "Nie wybrano",
+                class: 'filterrific-periodically-observed', size: 11
+            ) %>
+      </div>
+    <% end %>
     <div class="contact-data-td">
       Imię i nazwisko<br>
       <%= f.text_field(
@@ -80,7 +83,7 @@
 <div class="contact-data-table" id="filterrific_results">
         <%= render(
                 partial: "users/users_list",
-                locals: {users: users}
+                locals: {users: users, no_roles: no_roles}
             ) %>
 </div>
 <% end %>

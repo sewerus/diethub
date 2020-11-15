@@ -31,22 +31,26 @@
       </div>
   <% end %>
 
-  <% if current_user.is_a? Admin %>
+  <% if current_user.is_a? Admin or current_user.is_a? Dietician %>
       <div class="contact-data-tr">
-        <div class="contact-data-td">
-          <%= link_to edit_user_path(user) do %>
-              <div class="button-link">
-                Edycja
-              </div>
-          <% end %>
-        </div>
-        <div class="contact-data-td">
-          <%= link_to reset_password_path(user) do %>
-              <div class="button-link">
-                Resetowanie hasła
-              </div>
-          <% end %>
-        </div>
+        <% if current_user.has_access_to_user?(user.id) %>
+          <div class="contact-data-td">
+            <%= link_to edit_user_path(user) do %>
+                <div class="button-link">
+                  Edycja
+                </div>
+            <% end %>
+          </div>
+        <% end %>
+        <% if current_user.can_reset_password?(user.id) %>
+          <div class="contact-data-td">
+            <%= link_to reset_password_path(user) do %>
+                <div class="button-link">
+                  Resetowanie hasła
+                </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
   <% end %>
 </div>

@@ -7,4 +7,12 @@
         locals: {user: @user}
         ) %>
   </div>
+  <div id="next-content">
+    <h4>Lista pacjentów</h4>
+
+    <%= render(
+            partial: "users/users_table",
+            locals: {users: @user.patients, no_roles: true}
+        ) %>
+  </div>
 </div>
