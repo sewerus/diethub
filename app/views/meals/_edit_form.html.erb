@@ -1,0 +1,21 @@
+<%= form_for meal, url: update_meal_path(meal), method: :patch, validate: true do |f| %>
+    <div class="edit-contact-data-table">
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Nazwa:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :title %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Opis:</div>
+        <div class="contact-data-td">
+          <%= f.text_area :description %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td button-link">
+          <%= f.submit "Zapisz i przejdź do wyboru produktów" %>
+        </div>
+      </div>
+    </div>
+<% end %>

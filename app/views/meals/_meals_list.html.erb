@@ -1,0 +1,6 @@
+<% meals.each do |meal| %>
+    <%= render(
+        partial: "meals/meal_tr",
+        locals: {meal: meal}
+        ) %>
+<% end %>

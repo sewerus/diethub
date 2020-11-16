@@ -1,0 +1,47 @@
+#main-meals {
+  background-image: url("pancake_1.jpg");
+}
+
+#main-edit-meal {
+  background-image: url("pancake_2.jpg");
+}
+
+#main-edit-meal-products {
+  background-image: url("pancake_2.jpg");
+}
+
+#main-edit-meal #content {
+  padding-left: 20%;
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+#main-meals #content {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  #meal-main-data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    @media (max-width: 1050px) {
+      flex-direction: column;
+      .contact-data-table {
+        margin: 50px auto;
+      }
+      .contact-data-tr {
+        width: 600px;
+      }
+    }
+    @media (max-width: 562px) {
+      .contact-data-tr {
+        width: 300px;
+      }
+    }
+  }
+}
+
+#main-edit-meal-products #content {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}

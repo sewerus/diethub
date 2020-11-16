@@ -1,0 +1,4 @@
+$("#product-<%= @product.id %>").html("<%= j (render(
+                  partial: 'products/product_tr',
+                  locals: {product: @product, meal: @meal}
+              )) %>");

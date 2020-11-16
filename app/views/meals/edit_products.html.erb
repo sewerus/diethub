@@ -1,0 +1,10 @@
+<div id="main-edit-meal-products" class="main-frame">
+  <div id="content">
+    <h2>Lista składników do potrawy: <%= link_to @meal.title, meal_path(@meal) %></h2>
+
+    <%= render(
+            partial: "products/products",
+            locals: {products: @products, meal: @meal}
+        ) %>
+  </div>
+</div>

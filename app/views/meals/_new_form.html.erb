@@ -1,0 +1,22 @@
+<%= form_for meal, url: create_meal_path, validate: true do |f| %>
+    <div class="edit-contact-data-table">
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Nazwa:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :title %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Opis:</div>
+        <div class="contact-data-td">
+          <%= f.text_area :description %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td button-link">
+            <%= f.hidden_field :author_id, value: current_user.id %>
+            <%= f.submit "Zapisz" %>
+        </div>
+      </div>
+    </div>
+<% end %>

@@ -17,6 +17,10 @@
   background-color: rgba(0, 0, 0, 0.6);
 }
 
+#next-content {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
 #main-login {
   background-image: url("apple_1.jpg");
   text-align: center;
@@ -73,7 +77,14 @@
     margin-bottom: 5px;
   }
   .contact-data-td {
-    width: 230px;
+    &:not(.button-link) {
+      width: 230px;
+    }
+    @media (max-width: 562px) {
+      &:not(.button-link) {
+        width: 150px;
+      }
+    }
     padding: 10px 30px 10px 30px;
     margin: 10px 10px 0 10px;
     display: flex;
@@ -100,7 +111,7 @@
   }
 }
 
-#main-users #content {
+#main-users #content, #main-products #content, #main-edit-meal-products #content {
   .contact-data-tr:nth-child(2n) {
     .contact-data-td:not(:first-child):not(:last-child):nth-child(2n) {
       border-bottom: 1px solid darkolivegreen;
@@ -130,7 +141,7 @@
 }
 
 #next-content h4 {
-  @extend .contact-data-table;
+  //@extend .contact-data-table;
 }
 
 .index-new-tr {

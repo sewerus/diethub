@@ -1,0 +1,20 @@
+<div id="main-meals" class="main-frame">
+  <div id="content">
+    <h2>Potrawa: <%= @meal.title %></h2>
+
+    <div id="meal-main-data">
+      <%= render(
+              partial: "meals/main_data",
+              locals: {meal: @meal}
+          ) %>
+    </div>
+  </div>
+  <div id="next-content">
+    <h4>Sposób przygotowania</h4>
+
+    <%#= render(
+            partial: "users/users_table",
+            locals: {users: @user.patients, no_roles: true}
+        ) %>
+  </div>
+</div>

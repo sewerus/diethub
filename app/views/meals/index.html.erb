@@ -1,0 +1,21 @@
+<div id="main-meals" class="main-frame">
+  <div id="content">
+    <h2>Lista posiłków</h2>
+
+    <div class="index-new-menu">
+      <div class="index-new-tr">
+        <div class="index-new-td">
+          <%= link_to new_meal_path do %>
+              <div class="button-link">
+                Nowy posiłek
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%= render(
+            partial: "meals/meals",
+            locals: {meals: @meals}
+        ) %>
+  </div>
+</div>

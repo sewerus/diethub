@@ -10,9 +10,30 @@
   <div id="next-content">
     <h4>Lista potraw</h4>
 
-    <%#= render(
-            partial: "users/users_table",
-            locals: {users: @user.patients, no_roles: true}
-        ) %>
+    <div class="contact-data-table">
+      <div class="contact-data-tr">
+        <div class="contact-data-td">
+          Nazwa potrawy
+        </div>
+        <div class="contact-data-td">
+          Potrzebna ilość
+        </div>
+      </div>
+
+      <% @product.meals_relationships.each do |meal_rel| %>
+          <% meal = meal_rel.meal %>
+          <% amount = meal_rel.units_amount %>
+          <div class="contact-data-tr">
+            <div class="contact-data-td">
+              <%= link_to meal.title, meal_path(meal) %>
+            </div>
+            <div class="contact-data-td">
+              <div class="contact-data-td">
+                <%= @product.amount_text(amount, true) %> [<%= @product.amount_g(amount) %> g]
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
   </div>
 </div>

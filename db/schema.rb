@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_15_143701) do
+ActiveRecord::Schema.define(version: 2020_11_16_173549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,29 @@ ActiveRecord::Schema.define(version: 2020_11_15_143701) do
     t.bigint "patient_id"
     t.index ["dietician_id"], name: "index_dieticians_patients_relationships_on_dietician_id"
     t.index ["patient_id"], name: "index_dieticians_patients_relationships_on_patient_id"
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "calories"
+    t.integer "fat"
+    t.integer "carbo"
+    t.integer "protein"
+    t.index ["author_id"], name: "index_meals_on_author_id"
+  end
+
+  create_table "meals_products_relationships", force: :cascade do |t|
+    t.bigint "meal_id"
+    t.bigint "product_id"
+    t.decimal "units_amount", precision: 7, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meal_id"], name: "index_meals_products_relationships_on_meal_id"
+    t.index ["product_id"], name: "index_meals_products_relationships_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|

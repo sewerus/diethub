@@ -19,9 +19,14 @@
 @import "bootstrap";
 @import 'bootstrap/glyphicons';
 
-body {
+html {
+  height: 100%;
+}
+
+body, main {
   //background-color: black;
   color: white;
+  height: 100%;
 }
 
 a {
@@ -91,6 +96,7 @@ a {
   background-size: cover;
   min-height: 900px;
   width: 100%;
+  height: 100%;
   padding-top: 15px;
 }
 
@@ -172,4 +178,18 @@ input[type=submit], .select2 {
 
 .select2-selection__rendered {
   color: white !important;
+}
+
+.initially-hidden {
+  display: none;
+}
+
+.horizontal-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  input {
+    max-width: 70px;
+    text-align: center;
+  }
 }

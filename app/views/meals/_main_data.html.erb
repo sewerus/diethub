@@ -1,0 +1,90 @@
+<div class="contact-data-table">
+  <div class="contact-data-tr">
+    <div class="contact-data-td">Lista składników:</div>
+  </div>
+  <% @meal.products_relationships.each do |product_rel| %>
+      <% amount = product_rel.units_amount %>
+      <% product = product_rel.product %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">
+          <%= link_to product.title, product_path(product) %>
+        </div>
+        <div class="contact-data-td">
+          <%= product.amount_text(amount, true) %> [<%= product.amount_g(amount) %> g]
+        </div>
+      </div>
+  <% end %>
+
+  <% if meal.can_be_edited?(current_user) %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">
+          <%= link_to edit_meal_products_path(meal) do %>
+              <div class="button-link">
+                Edycja
+              </div>
+              </div>
+          <% end %>
+          </div>
+  <% end %>
+</div>
+
+<div class="contact-data-table">
+  <% unless meal.description.to_s.empty? %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Opis:</div>
+        <div class="contact-data-td">
+          <%= meal.description %>
+        </div>
+      </div>
+  <% end %>
+  <% unless meal.calories.to_s.empty? %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Kalorie:</div>
+        <div class="contact-data-td">
+          <%= meal.calories %> kcal
+        </div>
+      </div>
+  <% end %>
+  <% unless meal.fat.to_s.empty? %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Tłuszcze:</div>
+        <div class="contact-data-td">
+          <%= meal.fat %> g
+        </div>
+      </div>
+  <% end %>
+  <% unless meal.carbo.to_s.empty? %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Węglowodany:</div>
+        <div class="contact-data-td">
+          <%= meal.carbo %> g
+        </div>
+      </div>
+  <% end %>
+  <% unless meal.protein.to_s.empty? %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Białko:</div>
+        <div class="contact-data-td">
+          <%= meal.protein %> g
+        </div>
+      </div>
+  <% end %>
+  <div class="contact-data-tr">
+    <div class="contact-data-td">Autor:</div>
+    <div class="contact-data-td">
+      <%= link_to meal.author.full_name, user_path(meal.author) %>
+    </div>
+  </div>
+
+  <% if meal.can_be_edited?(current_user) %>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">
+          <%= link_to edit_meal_path(meal) do %>
+              <div class="button-link">
+                Edycja
+              </div>
+              </div>
+          <% end %>
+          </div>
+  <% end %>
+</div>

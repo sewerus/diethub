@@ -1,0 +1,23 @@
+<div class="contact-data-tr">
+  <div class="contact-data-td">
+    <%= link_to meal.author.full_name, user_path(meal.author) %>
+  </div>
+  <div class="contact-data-td">
+    <%= link_to meal.title, meal_path(meal) %>
+  </div>
+  <div class="contact-data-td">
+    <%= meal.calories %>
+  </div>
+  <div class="contact-data-td">
+    <%= meal.fat %>
+  </div>
+  <div class="contact-data-td">
+    <%= meal.carbo %>
+  </div>
+  <div class="contact-data-td">
+    <%= meal.protein %>
+  </div>
+  <div class="contact-data-td">
+    <%= meal.description %>
+  </div>
+</div>

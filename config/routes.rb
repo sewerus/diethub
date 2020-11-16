@@ -25,4 +25,14 @@ Rails.application.routes.draw do
   resources :products
   patch '/products' => 'products#create', as: :create_product
   patch '/products/:id' => 'products#update', as: :update_product
+
+  #meals
+  resources :meals
+  patch '/meals' => 'meals#create', as: :create_meal
+  patch '/meals/:id' => 'meals#update', as: :update_meal
+  get '/meals/:id/edit_products' => 'meals#edit_products', as: :edit_meal_products
+  patch '/meals/:id/update_products' => 'meals#update_products', as: :update_meal_products
+  patch '/meals/:id/add_product/:product_id' => 'meals#add_product', as: :add_product_to_meal
+  patch '/meals/:id/remove_product/:product_id' => 'meals#remove_product', as: :remove_product_from_meal
+  patch '/meals/:id/update_product_amount/:product_id' => 'meals#udpate_product_amount', as: :update_product_amount
 end

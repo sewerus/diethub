@@ -1,68 +1,64 @@
-class Product < ApplicationRecord
+class Meal < ApplicationRecord
   belongs_to :author, class_name: "User"
-  #meal
-  has_many :meals_relationships, class_name:  "MealsProductsRelationship",
-          foreign_key: "product_id", dependent:   :destroy
-  has_many :meals, through: :meals_relationships, source: :meal
+  #products
+  has_many :products_relationships, class_name: "MealsProductsRelationship",
+           foreign_key: "meal_id",
+           dependent: :destroy
+  has_many :products, through: :products_relationships, source: :product
 
-  validates :calories, format: {with: /\A\d+\z/,
-                                message: "Tu powinna być tylko liczba!"}
-  validates :fat, format: {with: /\A\d+\z/,
-                                message: "Tu powinna być tylko liczba!"}
-  validates :carbo, format: {with: /\A\d+\z/,
-                                message: "Tu powinna być tylko liczba!"}
-  validates :protein, format: {with: /\A\d+\z/,
-                                message: "Tu powinna być tylko liczba!"}
-  validates :unit_amount, format: {with: /\A\d+\z/,
-                                message: "Tu powinna być tylko liczba!"}
-
-  after_update :update_all_meals
-
-  def creates?(meal)
-    !MealsProductsRelationship.where(product_id: self.id).where(meal_id: meal.id).empty?
-  end
 
   def can_be_edited?(user)
     user.is_a? Admin or user.id == self.author_id
   end
+  
+  def update_numbers
+    calories = 0
+    fat = 0
+    carbo = 0
+    protein = 0
+    self.products_relationships.each do |product_rel|
+      amount = product_rel.units_amount
+      product = product_rel.product
+      unit_amount = product.unit_amount
+      calories += amount * product.calories / unit_amount
+      fat += amount * product.fat / unit_amount
+      carbo += amount * product.carbo / unit_amount
+      protein += amount * product.protein / unit_amount
+    end
+    self.calories = carbo
+    self.fat = fat
+    self.carbo = carbo
+    self.protein = protein
+    self.save
+  end
 
-  def amount_text(number, with_number = false)
-    if with_number
-      result = number.to_s + " "
-      if number == number.to_i
-        result = number.to_i.to_s + " "
+  def consists?(product)
+    !MealsProductsRelationship.where(product_id: product.id).where(meal_id: self.id).empty?
+  end
+
+  def add_product(product_id)
+    mp = MealsProductsRelationship.new
+    mp.meal = self
+    mp.product_id = product_id
+    mp.save!
+  end
+
+  def remove_product(product_id)
+    MealsProductsRelationship.where(meal_id: self.id).where(product_id: product_id).destroy_all
+  end
+
+  def udpate_product_amount(product_id, amount_params)
+    unless amount_params.nil?
+      amount = amount_params[:units_amount]
+      mp = MealsProductsRelationship.where(meal_id: self.id).where(product_id: product_id).first
+      unless mp.nil?
+        mp.update(units_amount: amount)
       end
-    else
-      result = ""
     end
-    if number == 1
-      result += self.unit_s
-    else
-      result += self.unit_pl
-    end
-    result
   end
 
-  def unit_s
-    self.unit.split("/").first
-  end
-
-  def unit_pl
-    self.unit.split("/").second
-  end
-
-  def amount_g(number)
-    result = self.unit_amount * number
-    if result == result.to_i
-      result = result.to_i
-    end
-    result
-  end
-
-  def update_all_meals
-    self.meals.each do |meal|
-      meal.update_numbers
-    end
+  def product_relationship(product)
+    MealsProductsRelationship.where(meal_id: self.id).where(product_id: product.id).first
   end
 
   filterrific(
@@ -95,7 +91,7 @@ class Product < ApplicationRecord
           "(
               EXISTS (
                 SELECT id FROM users WHERE
-                id = products.author_id
+                id = meals.author_id
                 AND
                 (
                   LOWER(users.name) LIKE ?
@@ -117,7 +113,7 @@ class Product < ApplicationRecord
     num_or_conds = 1
     where(
         terms.map { |term|
-          "(LOWER(products.title) LIKE ?)"
+          "(LOWER(meals.title) LIKE ?)"
         }.join(' AND '),
         *terms.map { |e| [e] * num_or_conds }.flatten
     )
@@ -131,7 +127,7 @@ class Product < ApplicationRecord
     num_or_conds = 1
     where(
         terms.map { |term|
-          "(LOWER(products.unit) LIKE ?)"
+          "(LOWER(meals.unit) LIKE ?)"
         }.join(' AND '),
         *terms.map { |e| [e] * num_or_conds }.flatten
     )
@@ -145,57 +141,57 @@ class Product < ApplicationRecord
     num_or_conds = 1
     where(
         terms.map { |term|
-          "(LOWER(products.description) LIKE ?)"
+          "(LOWER(meals.description) LIKE ?)"
         }.join(' AND '),
         *terms.map { |e| [e] * num_or_conds }.flatten
     )
   }
   scope :search_calories_gte, lambda { |amount|
     amount = amount.to_i
-    where('products.calories >= ?', amount)
+    where('meals.calories >= ?', amount)
   }
   scope :search_calories_lt, lambda { |amount|
     amount = amount.to_i
-    where('products.calories < ?', amount)
+    where('meals.calories < ?', amount)
   }
   scope :search_fat_gte, lambda { |amount|
     amount = amount.to_i
-    where('products.fat >= ?', amount)
+    where('meals.fat >= ?', amount)
   }
   scope :search_fat_lt, lambda { |amount|
     amount = amount.to_i
-    where('products.fat < ?', amount)
+    where('meals.fat < ?', amount)
   }
   scope :search_carbo_gte, lambda { |amount|
     amount = amount.to_i
-    where('products.carbo >= ?', amount)
+    where('meals.carbo >= ?', amount)
   }
   scope :search_carbo_lt, lambda { |amount|
     amount = amount.to_i
-    where('products.carbo < ?', amount)
+    where('meals.carbo < ?', amount)
   }
   scope :search_protein_gte, lambda { |amount|
     amount = amount.to_i
-    where('products.protein >= ?', amount)
+    where('meals.protein >= ?', amount)
   }
   scope :search_protein_lt, lambda { |amount|
     amount = amount.to_i
-    where('products.protein < ?', amount)
+    where('meals.protein < ?', amount)
   }
 
   scope :sorted_by, lambda { |sort_option|
     direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
     case sort_option.to_s
       when /^title_/
-        order("LOWER(products.title) #{ direction }")
+        order("LOWER(meals.title) #{ direction }")
       when /^calories_/
-        order("LOWER(products.calories) #{ direction }")
+        order("LOWER(meals.calories) #{ direction }")
       when /^fat_/
-        order("LOWER(products.fat) #{ direction }")
+        order("LOWER(meals.fat) #{ direction }")
       when /^carbo_/
-        order("LOWER(products.carbo) #{ direction }")
+        order("LOWER(meals.carbo) #{ direction }")
       when /^protein_/
-        order("LOWER(products.protein) #{ direction }")
+        order("LOWER(meals.protein) #{ direction }")
       else
         raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
     end

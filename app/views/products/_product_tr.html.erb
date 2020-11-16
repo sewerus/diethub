@@ -1,4 +1,22 @@
-<div class="contact-data-tr">
+<% meal ||= nil %>
+  <% unless meal.nil? %>
+      <div class="contact-data-td">
+        <% if product.creates?(meal) %>
+            <% mp_rel = meal.product_relationship(product) %>
+            <%= form_for(mp_rel, url: update_product_amount_path(meal, product), method: :patch, remote: true, local: true) do |mp| %>
+              <span class="horizontal-form">
+                Ilość: <%= mp.text_field :units_amount, value: mp_rel.units_amount, onkeyup: "$('#product-#{product.id}-units-amoun-submit').fadeIn();"  %> <%= product.unit_pl %>
+              </span>
+              <span id="product-<%= product.id %>-units-amoun-submit" class="horizontal-form-submit initially-hidden">
+                <%= mp.submit "Zapisz" %>
+              </span>
+            <% end %>
+          <%= link_to "Odrzuć", remove_product_from_meal_path(meal, product), remote: true, method: :patch %>
+        <% else %>
+            <%= link_to "Dodaj", add_product_to_meal_path(meal, product), remote: true, method: :patch %>
+        <% end %>
+      </div>
+  <% end %>
   <div class="contact-data-td">
     <%= link_to product.author.full_name, user_path(product.author) %>
   </div>
@@ -23,4 +41,3 @@
   <div class="contact-data-td">
     <%= product.description %>
   </div>
-</div>

@@ -1,6 +1,9 @@
+<% meal ||= meal %>
 <% products.each do |product| %>
-    <%= render(
-        partial: "products/product_tr",
-        locals: {product: product}
-        ) %>
+    <div id="product-<%= product.id %>" class="contact-data-tr">
+      <%= render(
+              partial: "products/product_tr",
+              locals: {product: product, meal: meal}
+          ) %>
+    </div>
 <% end %>
