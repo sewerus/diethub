@@ -1,0 +1,4 @@
+$("#recipe-<%= @recipe.id %>-steps").append("<div class='contact-data-tr' id='<%= @step.sortable_id %>'><%= j (render(
+                partial: "steps/edit_step",
+                locals: {step: @step}
+              )) %></div>");

@@ -35,4 +35,13 @@ Rails.application.routes.draw do
   patch '/meals/:id/add_product/:product_id' => 'meals#add_product', as: :add_product_to_meal
   patch '/meals/:id/remove_product/:product_id' => 'meals#remove_product', as: :remove_product_from_meal
   patch '/meals/:id/update_product_amount/:product_id' => 'meals#udpate_product_amount', as: :update_product_amount
+
+  #recipe
+  resources :recipes, only: [:edit, :destroy]
+  patch '/recipes/:meal_id' => 'recipes#create', as: :create_recipe
+
+  #steps
+  resources :steps, only: [:destroy]
+  patch '/steps/:id' => 'steps#update', as: :update_step
+  get '/steps/create_in_recipe/:id' => 'steps#create', as: :create_step
 end

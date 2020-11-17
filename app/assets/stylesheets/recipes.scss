@@ -1,0 +1,16 @@
+#main-edit-recipe {
+  background-image: url("pancake_2.jpg");
+}
+
+#main-edit-recipe #content {
+  padding-left: 20%;
+  padding-right: 20%;
+
+  @media (max-width: 870px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,11 @@
+<div id="main-edit-recipe" class="main-frame">
+  <div id="content">
+    <% meal = @recipe.meal %>
+    <h2>Edycja przepisu potrawy: <%= link_to meal.title, meal_path(meal) %></h2>
+
+    <%= render(
+            partial: "recipes/edit_form",
+            locals: {recipe: @recipe}
+        ) %>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="contact-data-td">
+  <%= link_to "Usuń", step_path(step), method: :delete, remote: true %>
+</div>
+<div class="contact-data-td short-td">
+  <%= step.order_number+1 %>
+</div>
+<div class="contact-data-td long-td">
+  <%= form_for(step, url: update_step_path(step), method: :patch, remote: true, local: true) do |f| %>
+              <span class="long-horizontal-form">
+                <%= f.text_area :content, value: step.content, onkeyup: "$('#step-#{step.id}-content-submit').fadeIn();"  %>
+              </span>
+              <span id="step-<%= step.id %>-content-submit" class="horizontal-form-submit initially-hidden">
+                <%= f.submit "Zapisz" %>
+              </span>
+  <% end %>
+</div>

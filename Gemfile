@@ -76,6 +76,8 @@ gem 'will_paginate'
 gem 'select2-rails'
 gem 'bootstrap-glyphicons'
 gem 'client_side_validations'
+gem 'jquery-ui-rails'
+gem 'rails_sortable'
 
 group :development do
   gem 'better_errors'

@@ -12,9 +12,13 @@
   <div id="next-content">
     <h4>Sposób przygotowania</h4>
 
-    <%#= render(
-            partial: "users/users_table",
-            locals: {users: @user.patients, no_roles: true}
-        ) %>
+    <% if @meal.recipe.nil? %>
+      <%= link_to "Dodaj nowy przepis", create_recipe_path(@meal), method: :patch %>
+    <% else %>
+      <%= render(
+              partial: "recipes/recipe",
+              locals: {recipe: @meal.recipe}
+          ) %>
+    <% end %>
   </div>
 </div>

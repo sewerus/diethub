@@ -5,6 +5,7 @@ class Meal < ApplicationRecord
            foreign_key: "meal_id",
            dependent: :destroy
   has_many :products, through: :products_relationships, source: :product
+  has_one :recipe
 
 
   def can_be_edited?(user)

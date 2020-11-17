@@ -103,6 +103,12 @@
       border: none;
     }
   }
+  .short-td {
+    width: 10px !important;
+  }
+  .long-td {
+    width: 70% !important;
+  }
 }
 
 .edit-contact-data-table {
@@ -111,7 +117,7 @@
   }
 }
 
-#main-users #content, #main-products #content, #main-edit-meal-products #content {
+#main-users #content, #main-products #content, #main-edit-meal-products #content, #next-content {
   .contact-data-tr:nth-child(2n) {
     .contact-data-td:not(:first-child):not(:last-child):nth-child(2n) {
       border-bottom: 1px solid darkolivegreen;

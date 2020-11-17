@@ -1,0 +1,22 @@
+<div class="edit-contact-data-table">
+  <% recipe.steps.each do |step| %>
+    <%= render(
+        partial: "steps/step",
+        locals: {step: step}
+        ) %>
+  <% end %>
+
+  <% if recipe.can_edit?(current_user) %>
+  <div class="contact-data-tr">
+  <div class="contact-data-td">
+    <%= link_to edit_recipe_path(recipe) do %>
+    <div class="button-link">
+      Edycja
+    </div>
+    <% end %>
+  </div>
+    <div class="contact-data-td"></div>
+  </div>
+  <% end %>
+</div>
+

@@ -20,13 +20,17 @@
 @import 'bootstrap/glyphicons';
 
 html {
-  height: 100%;
+  min-height: 100%;
+  overflow: auto;
 }
 
 body, main {
   //background-color: black;
   color: white;
-  height: 100%;
+  min-height: 100%;
+  //height: 100%;
+  height: 100vh;
+  overflow: auto;
 }
 
 a {
@@ -98,6 +102,7 @@ a {
   width: 100%;
   height: 100%;
   padding-top: 15px;
+  overflow: auto;
 }
 
 #content, #next-content {
@@ -192,4 +197,18 @@ input[type=submit], .select2 {
     max-width: 70px;
     text-align: center;
   }
+}
+
+.long-horizontal-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  input, textarea {
+    max-width: 70%;
+    text-align: center;
+  }
+}
+.long-td input, .long-td textarea {
+  max-width: 100%;
+  width: 100%;
 }

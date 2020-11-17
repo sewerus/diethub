@@ -1,0 +1,30 @@
+<div id="recipe-<%= recipe.id %>-steps" class="edit-contact-data-table sortable">
+  <% recipe.steps.each_with_sortable_id do |step, sortable_id| %>
+      <div class="contact-data-tr" id="<%= sortable_id %>">
+        <%= render(
+                partial: "steps/edit_step",
+                locals: {step: step}
+            ) %>
+      </div>
+  <% end %>
+</div>
+
+<% if recipe.can_edit?(current_user) %>
+  <div class="edit-contact-data-table">
+    <div class="contact-data-tr">
+      <div class="contact-data-td">
+        <%= link_to create_step_path(recipe), remote: true do %>
+            <div class="button-link">
+              Dodaj krok
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script>
+  $(function() {
+    $('.sortable').railsSortable();
+  });
+</script>
