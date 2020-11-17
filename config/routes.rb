@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   #root
   root to: 'pages#start_page'
 
+  #static
+  get '/abouts' => 'pages#abouts', as: :abouts
+
   #devise
   devise_for :users
 

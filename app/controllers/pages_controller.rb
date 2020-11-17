@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :abouts
 
   def start_page
     if current_user.is_a? Admin
@@ -11,6 +11,9 @@ class PagesController < ApplicationController
     else
       redirect_to user_path(current_user)
     end
+  end
+
+  def abouts
   end
 
 end
