@@ -21,10 +21,12 @@ class Meal < ApplicationRecord
       amount = product_rel.units_amount
       product = product_rel.product
       unit_amount = product.unit_amount
-      calories += amount * product.calories / unit_amount
-      fat += amount * product.fat / unit_amount
-      carbo += amount * product.carbo / unit_amount
-      protein += amount * product.protein / unit_amount
+      if !amount.nil? and unit_amount.to_f != 0.0
+        calories += amount * product.calories / unit_amount
+        fat += amount * product.fat / unit_amount
+        carbo += amount * product.carbo / unit_amount
+        protein += amount * product.protein / unit_amount
+      end
     end
     self.calories = carbo
     self.fat = fat

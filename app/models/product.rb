@@ -35,20 +35,26 @@ class Product < ApplicationRecord
     else
       result = ""
     end
-    if number == 1
+    if number.to_i == number and number.to_i == 1
       result += self.unit_s
-    else
+    elsif number.to_i != number or (number.to_i % 10 < 5 and (number < 10))
       result += self.unit_pl
+    else
+      result += self.unit_pl_2
     end
     result
   end
 
   def unit_s
-    self.unit.split("/").first
+    self.unit.split("/").first || ""
   end
 
   def unit_pl
-    self.unit.split("/").second
+    self.unit.split("/").second || ""
+  end
+
+  def unit_pl_2
+    self.unit.split("/").third || ""
   end
 
   def amount_g(number)
