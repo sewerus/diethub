@@ -1,4 +1,4 @@
-$("div[id='<%= @step_sortable_id %>']").html("<%= j (render(
+$("div[id='<%= @step.sortable_id %>']").html("<%= j (render(
                   partial: 'steps/edit_step',
                   locals: {step: @step}
               )) %>");
