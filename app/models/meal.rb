@@ -13,22 +13,22 @@ class Meal < ApplicationRecord
   end
   
   def update_numbers
-    calories = 0
-    fat = 0
-    carbo = 0
-    protein = 0
+    calories = 0.0
+    fat = 0.0
+    carbo = 0.0
+    protein = 0.0
     self.products_relationships.each do |product_rel|
-      amount = product_rel.units_amount
+      amount = product_rel.units_amount.to_f
       product = product_rel.product
-      unit_amount = product.unit_amount
+      unit_amount = product.unit_amount.to_f
       if !amount.nil? and unit_amount.to_f != 0.0
-        calories += amount * product.calories / unit_amount
-        fat += amount * product.fat / unit_amount
-        carbo += amount * product.carbo / unit_amount
-        protein += amount * product.protein / unit_amount
+        calories += amount * product.calories.to_f * unit_amount / 100.to_f
+        fat += amount * product.fat.to_f * unit_amount / 100.to_f
+        carbo += amount * product.carbo.to_f * unit_amount / 100.to_f
+        protein += amount * product.protein.to_f * unit_amount / 100.to_f
       end
     end
-    self.calories = carbo
+    self.calories = calories
     self.fat = fat
     self.carbo = carbo
     self.protein = protein
