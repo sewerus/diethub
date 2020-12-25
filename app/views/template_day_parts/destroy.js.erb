@@ -1,1 +1,9 @@
 $("#template_day_part_<%= @template_day_part.id %>").fadeOut();
+
+$("#template_day_<%= @template_day_part.template_day.id %>").html(
+    "<%=  escape_javascript(
+          render(
+            partial: 'template_days/template_day',
+            locals: {template_day: @template_day_part.template_day}
+            )
+          ) %>");
