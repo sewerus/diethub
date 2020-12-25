@@ -1,0 +1,9 @@
+$("#modal-window").find(".close").click();
+
+$("#template-days-list").html(
+    "<%=  escape_javascript(
+          render(
+            partial: 'template_days/list',
+            locals: {patient: @template_day.patient}
+            )
+          ) %>");

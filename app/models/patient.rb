@@ -3,6 +3,9 @@ class Patient < User
   has_one :dieticians_relationship, class_name:  "DieticiansPatientsRelationship",
            foreign_key: "patient_id", dependent:   :destroy
   has_one :dietician, through: :dieticians_relationship, source: :dietician
+
+  #template_days
+  has_many :template_days, dependent: :destroy
   
 
   def update_dietician(new_dietician_id = nil)

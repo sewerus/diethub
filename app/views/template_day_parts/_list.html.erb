@@ -1,0 +1,19 @@
+<div class="template-day-parts">
+  <% template_day.template_day_parts.order(:hour, :minute).each do |template_day_part| %>
+          <div class="template-day-part" id="template_day_part_<%= template_day_part.id %>">
+            <%= render(
+                  partial: "template_day_parts/template_day_part",
+                  locals: {template_day_part: template_day_part}
+                ) %>
+          </div>
+  <% end %>
+
+
+      <%= link_to new_template_day_part_path(template_day), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window'} do %>
+          <div class="button-link small-text">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Nowa pora dnia
+          </div>
+      <% end %>
+
+</div>

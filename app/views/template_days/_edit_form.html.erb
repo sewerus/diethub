@@ -1,0 +1,15 @@
+<%= form_for template_day, url: update_template_day_path(template_day), validate: true, remote: true do |f| %>
+    <div class="edit-contact-data-table">
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Nazwa szablonu:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :title %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td button-link">
+            <%= f.submit "Zapisz" %>
+        </div>
+      </div>
+    </div>
+<% end %>

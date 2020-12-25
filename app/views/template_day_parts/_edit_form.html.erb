@@ -1,0 +1,40 @@
+<%= form_for template_day_part, url: update_template_day_part_path(template_day_part), validate: true, method: :patch, remote: true do |f| %>
+    <div class="edit-contact-data-table">
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Nazwa pory dnia:</div>
+        <div class="contact-data-td">
+          <%= f.text_field :title %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Czas:</div>
+        <div class="contact-data-td" style="display: flex; flex-direction: row; justify-content: space-around">
+          <%= f.number_field :hour, step: 1, min: 0, max: 23, style: "width: 40%" %>
+          :
+          <%= f.number_field :minute, step: 1, min: 0, max: 59, style: "width: 40%" %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">
+          Margines czasowy<br>
+          [minuty]:
+        </div>
+        <div class="contact-data-td">
+          <%= f.number_field :time_margin, step: 1, min: 0 %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">
+          Opis
+        </div>
+        <div class="contact-data-td">
+          <%= f.text_area :description %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td button-link">
+            <%= f.submit "Zapisz" %>
+        </div>
+      </div>
+    </div>
+<% end %>

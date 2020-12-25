@@ -1,0 +1,5 @@
+$("#modal-window").find(".modal-content").html("<%= j (render(
+                  partial: 'template_days/new',
+                  locals: {template_day: @template_day}
+              )) %>");
+$("#modal-window").modal();

@@ -1,4 +1,11 @@
 <div class="contact-data-tr">
+  <% unless @template_day_part.nil? %>
+      <div class="contact-data-td" id="button_meal_<%= meal.id %>">
+        <%= link_to create_template_day_part_meal_path(@template_day_part, meal), remote: true do %>
+          Dodaj
+        <% end %>
+      </div>
+  <% end %>
   <div class="contact-data-td">
     <%= link_to meal.author.full_name, user_path(meal.author) %>
   </div>

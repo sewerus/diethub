@@ -10,10 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_17_194714) do
+ActiveRecord::Schema.define(version: 2020_12_24_103540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "day_part_meals", force: :cascade do |t|
+    t.bigint "day_part_id"
+    t.bigint "meal_id"
+    t.boolean "eaten"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["day_part_id"], name: "index_day_part_meals_on_day_part_id"
+    t.index ["meal_id"], name: "index_day_part_meals_on_meal_id"
+  end
+
+  create_table "day_parts", force: :cascade do |t|
+    t.string "title"
+    t.bigint "day_id"
+    t.integer "hour"
+    t.integer "minutes"
+    t.integer "time_margin"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["day_id"], name: "index_day_parts_on_day_id"
+  end
+
+  create_table "days", force: :cascade do |t|
+    t.string "title"
+    t.bigint "patient_id"
+    t.date "date"
+    t.bigint "template_day_id"
+    t.integer "sleep_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_days_on_patient_id"
+    t.index ["template_day_id"], name: "index_days_on_template_day_id"
+  end
 
   create_table "dieticians_patients_relationships", force: :cascade do |t|
     t.bigint "dietician_id"
@@ -76,6 +110,35 @@ ActiveRecord::Schema.define(version: 2020_11_17_194714) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_steps_on_recipe_id"
+  end
+
+  create_table "template_day_part_meals", force: :cascade do |t|
+    t.bigint "template_day_part_id"
+    t.bigint "meal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meal_id"], name: "index_template_day_part_meals_on_meal_id"
+    t.index ["template_day_part_id"], name: "index_template_day_part_meals_on_template_day_part_id"
+  end
+
+  create_table "template_day_parts", force: :cascade do |t|
+    t.string "title"
+    t.bigint "template_day_id"
+    t.integer "hour"
+    t.integer "minute"
+    t.integer "time_margin"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["template_day_id"], name: "index_template_day_parts_on_template_day_id"
+  end
+
+  create_table "template_days", force: :cascade do |t|
+    t.bigint "patient_id"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_template_days_on_patient_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="myModalLabel">Nowa pora dnia w szablonie "<%= template_day_part.template_day.title %>"</h4>
+  <button type="button" class="close" data-dismiss="modal">x</button>
+</div>
+
+<div class="modal-body user-show">
+
+  <%= render(
+          partial: "template_day_parts/new_form",
+          locals: {template_day_part: template_day_part}
+      ) %>
+
+</div>

@@ -212,3 +212,17 @@ input[type=submit], .select2 {
   max-width: 100%;
   width: 100%;
 }
+
+.modal-content {
+  background-color: black;
+  box-shadow: 0 0 3px darkolivegreen;
+  .edit-contact-data-table {
+    width: 100%;
+  }
+}
+button.close {
+  color: white;
+}
+.small-text {
+  font-size: 10px;
+}

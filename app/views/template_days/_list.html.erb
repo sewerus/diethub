@@ -1,0 +1,21 @@
+<div class="contact-data-table days-table">
+
+  <div class="contact-data-tr">
+    <% patient.template_days.order(:created_at).each do |template_day| %>
+        <div class="contact-data-td" id="template_day_<%= template_day.id %>">
+          <%= render(
+                partial: "template_days/template_day",
+                locals: {template_day: template_day}
+              ) %>
+        </div>
+    <% end %>
+
+    <div class="contact-data-td">
+      <%= link_to new_template_day_path(patient), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window'} do %>
+          <div class="button-link">
+            Nowy szablon dnia
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

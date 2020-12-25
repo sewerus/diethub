@@ -1,0 +1,24 @@
+.template-day-part {
+  border: 1px dashed darkolivegreen;
+  box-shadow: 0 0 3px darkolivegreen;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 10px;
+}
+
+.template-day-parts {
+  width: 100%;
+}
+
+.template-day-part-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px dashed darkolivegreen;
+}
+
+.template-day-part-description {
+  padding: 5px;
+  text-align: left;
+  border-bottom: 1px dashed darkolivegreen;
+}

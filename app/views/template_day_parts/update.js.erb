@@ -1,0 +1,9 @@
+$("#modal-window").find(".close").click();
+
+$("#template_day_part_<%= @template_day_part.id %>").html(
+    "<%=  escape_javascript(
+          render(
+            partial: 'template_day_parts/template_day_part',
+            locals: {template_day_part: @template_day_part}
+            )
+          ) %>");

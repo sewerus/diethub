@@ -1,0 +1,36 @@
+#main-template-days {
+  background-image: url("kiwi.jpg");
+}
+
+#main-template-days #content {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.days-table {
+  .contact-data-tr {
+    .contact-data-td {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 10px;
+    }
+  }
+  .button-link {
+    padding: 3px;
+    width: auto;
+  }
+}
+
+.template-day-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+.template-day-summary {
+  border-top: 1px dashed darkolivegreen;
+  border-bottom: 1px dashed darkolivegreen;
+  margin: 5px;
+}

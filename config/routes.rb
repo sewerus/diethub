@@ -47,4 +47,23 @@ Rails.application.routes.draw do
   resources :steps, only: [:destroy]
   patch '/steps/:id' => 'steps#update', as: :update_step
   get '/steps/create_in_recipe/:id' => 'steps#create', as: :create_step
+
+  #template_days
+  resources :template_days, only: [:edit, :update, :destroy]
+  get '/patients/:id/template_days' => 'template_days#index', as: :template_days
+  get '/patients/:id/template_days/new' => 'template_days#new', as: :new_template_day
+  patch '/template_days' => 'template_days#create', as: :create_template_day
+  patch '/template_days/:id' => 'template_days#update', as: :update_template_day
+
+  #template_day_parts
+  resources :template_day_parts, only: [:edit, :update, :destroy]
+  get '/template_day/:id/template_day_parts/new' => 'template_day_parts#new', as: :new_template_day_part
+  patch '/template_day_parts' => 'template_day_parts#create', as: :create_template_day_part
+  patch '/template_day_parts/:id' => 'template_day_parts#update', as: :update_template_day_part
+
+  #template_day_part_meals
+  resources :template_day_part_meals, only: [:destroy]
+  get '/template_day_part/:id/add_meal' => 'template_day_part_meals#new', as: :new_template_day_part_meal
+  get '/template_day_part/:id/add_meal/:meal_id' => 'template_day_part_meals#create', as: :create_template_day_part_meal
+
 end

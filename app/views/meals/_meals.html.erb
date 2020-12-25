@@ -17,6 +17,11 @@
 
     <div class="contact-data-table">
       <div class="contact-data-tr">
+        <% unless @template_day_part.nil? %>
+            <div class="contact-data-td">
+              Operacja
+            </div>
+        <% end %>
         <div class="contact-data-td">
           Autor<br>
           <%= f.text_field(

@@ -1,0 +1,14 @@
+.template-day-part-meal-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: left;
+  border-bottom: 1px dashed darkolivegreen;
+  font-size: 14px;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

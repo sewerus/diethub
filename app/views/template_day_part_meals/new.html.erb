@@ -1,0 +1,15 @@
+<div id="main-meals" class="main-frame">
+  <div id="content">
+    <h2>Wybór posiłków do pory dnia <%= @template_day_part.title %></h2>
+    <h5>Powrót do planowania diety:
+      <%= link_to template_days_path(@template_day_part.template_day.patient) do %>
+          <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+      <% end %>
+    </h5>
+
+    <%= render(
+            partial: "meals/meals",
+            locals: {meals: @meals}
+        ) %>
+  </div>
+</div>

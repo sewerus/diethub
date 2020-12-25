@@ -1,0 +1,18 @@
+<div class="template-day-parts">
+  <% template_day_part.template_day_part_meals.each do |template_day_part_meal| %>
+          <div class="template-day-part-meal" id="template_day_part_meal_<%= template_day_part_meal.id %>">
+            <%= render(
+                  partial: "template_day_part_meals/template_day_part_meal",
+                  locals: {template_day_part_meal: template_day_part_meal}
+                ) %>
+          </div>
+  <% end %>
+
+  <%= link_to new_template_day_part_meal_path(template_day_part) do %>
+      <div class="button-link small-text">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Dodaj posiłek
+      </div>
+  <% end %>
+
+</div>
