@@ -1,0 +1,28 @@
+<%= link_to show_day_part_path(day_part), remote: true do %>
+  <div class="day-part-title day-part-time">
+    <div class="small-text">
+      <%= day_part.hour %>:<% if day_part.minute < 10 %>0<% end %><%= day_part.minute %>
+      <% if day_part.time_margin.to_i != 0 %>
+          &plusmn; <%= day_part.time_margin %> min
+      <% end %>
+    </div>
+    <% if day_part.eaten_all? %>
+      <div class="small-text" title="Zjedzono wszystko według planu">
+        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+      </div>
+    <% else %>
+        <div class="small-text" title="Pozostały posiłki do zjedzenia">
+          <span class="glyphicon glyphicon-remove red-text" aria-hidden="true"></span>
+        </div>
+    <% end %>
+  </div>
+  <div class="day-part-title">
+    <span>
+    <%= day_part.title %>
+    </span>
+  </div>
+<% end %>
+<%#= render(
+        partial: "day_part_meals/list",
+        locals: {day_part: day_part}
+    ) %>

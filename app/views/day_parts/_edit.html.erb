@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="myModalLabel">Wymiana: "<%= day_part.title %>"</h4>
+  <button type="button" class="close" data-dismiss="modal">x</button>
+</div>
+
+<div class="modal-body user-show">
+
+  Wybierz posiłki z innego szablonu:<br>
+
+  <div class="contact-data-table day-parts-table">
+    <% template_day_parts = [] %>
+    <% day_part.day.patient.template_days.each do |template_day| %>
+      <% template_day_parts += template_day.template_day_parts.where(title: day_part.title) %>
+    <% end %>
+    <% template_day_parts.each do |template_day_part| %>
+        <div class="contact-data-tr">
+          <div class="contact-data-td">
+            Z szablonu "<%= template_day_part.template_day.title %>"<br>
+            <%= link_to "Wybierz", update_day_part_path(day_part, template_day_part), remote: true %>
+          </div>
+          <div class="contact-data-td">
+            <% template_day_part.meals.each do |meal| %>
+              <%= link_to meal.title, meal_path(meal), target: "_blank" %>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+
+</div>

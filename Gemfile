@@ -78,6 +78,7 @@ gem 'bootstrap-glyphicons'
 gem 'client_side_validations'
 gem 'jquery-ui-rails'
 gem 'rails_sortable'
+gem 'simple_calendar', "~> 2.0"
 
 group :development do
   gem 'better_errors'

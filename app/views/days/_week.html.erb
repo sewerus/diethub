@@ -1,0 +1,25 @@
+<% start_day = start_day.beginning_of_week %>
+<div id="callendar-left-arrow">
+  <%= link_to change_callendar_week_path((start_day - 1.week).strftime("%d_%m_%Y"), user), class: "arrow-link", remote: true do %>
+      &larr;
+  <% end %>
+  <div id="callendar-hour-list">
+    <% (6..22).each do |hour| %>
+      <div class="callendar-hour">
+        <%= hour %>:00
+      </div>
+    <% end %>
+  </div>
+</div>
+<% (0..6).each do |day_number| %>
+    <% day = start_day+day_number.days %>
+    <%= render(
+        partial: "days/single_day",
+        locals: {day: day, day_number: day_number, user: user}
+        ) %>
+<% end %>
+<div>
+  <%= link_to change_callendar_week_path((start_day + 1.week).strftime("%d_%m_%Y"), user), class: "arrow-link", remote: true do %>
+      &rarr;
+  <% end %>
+</div>

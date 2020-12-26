@@ -1,0 +1,11 @@
+<div id="main-days" class="main-frame">
+  <div id="content">
+    <h2>Dieta: kalendarz dla <%= link_to @patient.full_name, patient_path(@patient) %></h2>
+    <div id="template-days-list">
+      <%= render(
+            partial: "days/callendar",
+            locals: {patient: @patient}
+        ) %>
+    </div>
+  </div>
+</div>

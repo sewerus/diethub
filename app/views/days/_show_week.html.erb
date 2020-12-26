@@ -1,0 +1,7 @@
+<% active ||= false %>
+<div id="callendar-week" class="week <% if active %>active-callendar<% end %>">
+  <%= render(
+          partial: "days/week",
+          locals: {start_day: Date.today.at_beginning_of_week, user: user}
+      ) %>
+</div>

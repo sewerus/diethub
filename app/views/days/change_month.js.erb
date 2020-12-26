@@ -1,0 +1,9 @@
+$("#callendar-month").html(
+    "<%=  escape_javascript(
+              render(
+                  partial: "days/month",
+                  locals: {start_date: @date, user: @patient}
+              )
+          ) %>");
+
+$("#callendar-setup").addClass("active-callendar").data("date", "<%= @date.strftime("%d_%m_%Y") %>");

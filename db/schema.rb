@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_24_103540) do
+ActiveRecord::Schema.define(version: 2020_12_26_202348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_12_24_103540) do
   create_table "day_part_meals", force: :cascade do |t|
     t.bigint "day_part_id"
     t.bigint "meal_id"
-    t.boolean "eaten"
+    t.boolean "eaten", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["day_part_id"], name: "index_day_part_meals_on_day_part_id"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2020_12_24_103540) do
     t.string "title"
     t.bigint "day_id"
     t.integer "hour"
-    t.integer "minutes"
+    t.integer "minute"
     t.integer "time_margin"
     t.text "description"
     t.datetime "created_at", null: false

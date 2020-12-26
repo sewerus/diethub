@@ -17,6 +17,12 @@
           <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
       <% end %>
     </h4>
+    <h4>
+      Dieta - kalendarz:
+      <%= link_to days_path(@user) do %>
+          <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+      <% end %>
+    </h4>
 
     <%= render(
         partial: "users/contact_data",

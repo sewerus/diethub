@@ -1,0 +1,85 @@
+.day-part {
+  border: 1px dashed darkolivegreen;
+  box-shadow: 0 0 3px darkolivegreen;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 10px;
+  background: rgba(0,0,0, 0.9);
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.day-parts {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.day-part-title {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px dashed darkolivegreen;
+  &:hover {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.day-part-description {
+  padding: 5px;
+  text-align: left;
+  border-bottom: 1px dashed darkolivegreen;
+}
+
+.day:not(.current) .day-part {
+  flex-direction: column;
+}
+
+.day-part.title {
+  padding: 10px;
+  font-size: 25px;
+  .day-part.color {
+    width: 20px;
+    height: 20px;
+    display: inline-table;
+    border-radius: 3px;
+  }
+}
+
+.day-part.time {
+}
+
+.day-part-description {
+  text-align: center;
+}
+
+.day-part-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  a {
+    color: gray;
+    font-size: 20px;
+    margin: 0 5px 0 10px;
+  }
+}
+
+.day-parts-table {
+  margin-top: 5px !important;
+}
+
+.day-parts-table .contact-data-tr {
+  border-top: 1px dashed darkolivegreen;
+  border-bottom: 1px dashed darkolivegreen;
+  border-right: none;
+  border-left: none;
+}
+
+.day-parts-table .contact-data-td {
+  border: none !important;
+}

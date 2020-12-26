@@ -1,0 +1,213 @@
+#main-days {
+  background-image: url("orange.jpg");
+}
+
+#main-days #content {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+#callendar-day, #callendar-week {
+  display: none;
+  &.active-callendar {
+    display: flex;
+  }
+}
+#callendar-month {
+  display: none;
+  &.active-callendar {
+    display: block;
+  }
+}
+
+.simple-calendar {
+  width: 100%;
+  text-align: center;
+}
+
+#callendar-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 6px;
+}
+
+.callendar-option-set {
+  width: 100%;
+  border: 1px solid darkolivegreen;
+  box-shadow: 0 -2px 3px darkolivegreen;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: none;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  .callendar-options-header {
+    text-align: center;
+  }
+
+  .callendar-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  a {
+    color: white;
+    &:hover {
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
+
+.callendar-option {
+  padding: 10px;
+  transition-duration: 1s;
+  &.active {
+    transition-duration: 1s;
+    font-weight: 300;
+    box-shadow: 0 4px 8px 0 rgba(saddlebrown, 0.1), 0 6px 20px 0 rgba(saddlebrown, 0.09);
+    //border-radius: 5px;
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  &:hover {
+    font-weight: 300;
+    transition-duration: 1s;
+    text-shadow: 0 0  3px white, 0 0  6px white, 0 0  8px white, 0 0  10px white, 0 0  12px white, 0 0  18px white, 0 0  25px white;
+  }
+}
+
+#callendar-day .day {
+  width: 100%;
+  margin: 2px;
+}
+
+.callendar.day-title {
+  height: 40px;
+  a {
+    color: white;
+    &:hover {
+      text-decoration: none;
+      color: lighten(darkolivegreen, 30%);
+    }
+  }
+  &.month {
+    font-weight: normal;
+    font-size: 11px;
+    height: auto;
+  }
+}
+
+#callendar-hour-list {
+  font-size: 10px;
+  margin-top: 20px;
+}
+
+.callendar-hour {
+  padding-top: 2px;
+  height: 50px;
+  overflow-y: visible;
+  scrollbar-width: thin;
+  z-index: 0;
+  //&:not(:first-child) {
+    border-bottom: 1px dashed lightgray;
+  //}
+}
+
+#callendar-hour-list .callendar-hour {
+  border: none;
+}
+
+.callendar-hour:hover .new-event-link {
+  opacity: 1;
+  height: 20px;
+  transition-duration: 0.5s;
+}
+
+.callendar-events-box {
+  display: flex;
+  flex-direction: row;
+  .many-events {
+    width: 49%;
+  }
+}
+
+td.day {
+  padding: 2px !important;
+}
+
+.week {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .day {
+    width: 12%;
+  }
+}
+
+.day {
+  &.current {
+    background-color: darken(darkolivegreen, 20%);
+    opacity: 0.9;
+    box-shadow: 0 0 7px scale-color(darkolivegreen, $lightness: 40%), 0 0 12px scale-color(darkolivegreen, $lightness: 60%);
+    border-radius: 10px;
+    &:not(.today) {
+      padding: 5px;
+      width: 25%;
+    }
+  }
+  transition-delay: 0.5s;
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+  .day-part-more, .new-day-part {
+    transition-delay: 0.5s;
+    transition-duration: 1s;
+    transition-timing-function: ease-out;
+    max-height: 0;
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
+  .day-part-more {
+    overflow-y: scroll;
+  }
+  .day-part-content {
+    font-size: 10px;
+    .bottom-table-links {
+      font-size: 13px;
+    }
+  }
+  &.current .day-part-content {
+    font-size: 13px;
+  }
+}
+
+.day-title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.day-part-info {
+  font-size: 10px;
+  color: grey;
+}
+
+.simple-calendar .prev-month, .simple-calendar .next-month {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.simple-calendar .today {
+  background: rgba(85, 107, 47, 0.5) !important;
+}
+
+a.arrow-link {
+  color: black;
+  font-size: 25px;
+  text-shadow: 0 0 5px white,0 0 5px white, 0 0 10px white, 0 0 10px white, 0 0 10px white, 0 0 15px white, 0 0 15px white, 0 0 20px white, 0 0 22px darkolivegreen;
+}

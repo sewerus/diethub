@@ -1,0 +1,24 @@
+<%# events = Event.for_user_at_date(user, day) %>
+
+<div class="day-title callendar month">
+  <%= link_to show_day_path(user, day.strftime("%d_%m_%Y")), remote: true do %>
+      <%= day.strftime("%d.%m") %>
+  <% end %>
+</div>
+
+<div class="month-callendar-events-box">
+  <% founed_day = user.get_day(day) %>
+  <% if founed_day.nil? %>
+      Nic...
+  <% else %>
+      <% count_all = 0 %>
+      <% count_eaten = 0 %>
+      <% founed_day.day_parts.map{|day_part| day_part.day_part_meals}.sum.each do |day_part_meal|
+        count_all += 1
+        if day_part_meal.eaten
+          count_eaten += 1
+         end
+        end %>
+      Zjedzono <%= count_eaten %>/<%= count_all %>
+  <% end %>
+</div>

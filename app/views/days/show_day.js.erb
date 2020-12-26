@@ -1,0 +1,11 @@
+$("#callendar-day").html("<%= j (render(
+                  partial: 'days/day',
+                  locals: {day: @date, user: @patient}
+              )) %>");
+$(".callendar-option").removeClass("active");
+$("#day-option").addClass("active");
+
+$("#week-table").removeClass("active-callendar");
+$("#callendar-day").addClass("active-callendar");
+$("#callendar-week").removeClass("active-callendar");
+$("#callendar-month").removeClass("active-callendar");

@@ -1,0 +1,31 @@
+<div id="callendar-menu">
+  <div class="callendar-option-set callendar">
+    <div class="callendar-options">
+      <%= link_to show_day_path(patient), remote: true, id: "day-option", class: "callendar-option" do %>
+          Dzień
+      <% end %>
+      <%= link_to show_week_path, remote: true, id: "week-option", class: "callendar-option" do %>
+          Tydzień
+      <% end %>
+      <%= link_to show_month_path, remote: true, id: "month-option", class: "callendar-option" do %>
+          Miesiąc
+      <% end %>
+    </div>
+  </div>
+</div>
+<div id="callendar-target">
+  <div id="callendar-setup" data-date="<%= Date.today.strftime("%d-%m-%Y") %>">
+    <%= render(
+            partial: "days/show_day",
+            locals: {day: Date.today, user: patient}
+        ) %>
+    <%= render(
+            partial: "days/show_week",
+            locals: {day: Date.today, user: patient, active: true}
+        ) %>
+    <%= render(
+            partial: "days/show_month",
+            locals: {start_date: Date.today, user: patient}
+        ) %>
+  </div>
+</div>

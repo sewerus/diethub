@@ -6,7 +6,9 @@ class Patient < User
 
   #template_days
   has_many :template_days, dependent: :destroy
-  
+
+  #days
+  has_many :days, dependent: :destroy
 
   def update_dietician(new_dietician_id = nil)
     unless self.dieticians_relationship.nil?
@@ -28,5 +30,9 @@ class Patient < User
     else
       self.dietician.id
     end
+  end
+
+  def get_day(date)
+    self.days.where(date: date).first
   end
 end

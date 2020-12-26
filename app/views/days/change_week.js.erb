@@ -1,0 +1,9 @@
+$("#callendar-week").html(
+    "<%=  escape_javascript(
+              render(
+                  partial: "days/week",
+                  locals: {start_day: @date, user: @patient}
+              )
+          ) %>");
+
+$("#callendar-setup").addClass("active-callendar").data("date", "<%= @date.strftime("%d_%m_%Y") %>");

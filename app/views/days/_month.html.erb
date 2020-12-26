@@ -1,0 +1,34 @@
+<div class="calendar-heading center">
+  <%= link_to change_callendar_month_path((start_date - 1.month).strftime("%d_%m_%Y"), user), class: "arrow-link", remote: true do %>
+      &larr;
+  <% end %>
+  <span class="calendar-title"><%= Day.month_names[start_date.month-1].capitalize %> <%= start_date.year %></span>
+  <%= link_to change_callendar_month_path((start_date + 1.month).strftime("%d_%m_%Y"), user), class: "arrow-link", remote: true do %>
+      &rarr;
+  <% end %>
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <% Day.date_range(start_date).slice(0, 7).each do |day| %>
+        <th><%= Day.day_names[day.wday-1] %></th>
+    <% end %>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% Day.date_range(start_date).each_slice(7) do |week| %>
+      <tr>
+        <% week.each do |day| %>
+              <td id="month_day_<%= day.strftime("%d_%m_%Y") %>" class="<%= Day.td_classes_for(day, start_date) %> callendar-hour">
+                  <%= render(
+                          partial: "days/month_day",
+                          locals: {day: day, start_date: start_date, user: user}
+                      ) %>
+              </td>
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

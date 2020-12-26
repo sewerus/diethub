@@ -1,0 +1,54 @@
+<div class="modal-header">
+  <div class="day-part-header">
+    <%= link_to edit_day_part_path(day_part), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window'} do %>
+        <span class="glyphicon glyphicon-refresh"></span> Wymień na plan z innego szablonu
+    <% end %>
+  </div>
+  <button type="button" class="close" data-dismiss="modal">x</button>
+</div>
+
+<div class="modal-body user-show" style="width: 100%">
+
+  <div class="day-part title">
+    <%= day_part.title %>
+  </div>
+  <div class="day-part time">
+    <%= Day.day_names[day_part.day.date.wday-1] %>,
+    <%= day_part.hour %>:<% if day_part.minute < 10 %>0<% end %><%= day_part.minute %>
+    <% if day_part.time_margin.to_i != 0 %>
+        &plusmn; <%= day_part.time_margin %> min
+    <% end %>
+  </div>
+
+  <% unless day_part.description.to_s.empty? %>
+      <div class="day-part-description">
+          <%= day_part.description.gsub("\n", "<br>").html_safe %>
+      </div>
+  <% end %>
+
+  <div class="day-part-description">
+    Posiłki:<br>
+
+    <div class="contact-data-table day-parts-table">
+      <% day_part.day_part_meals.each do |day_part_meal| %>
+        <% meal = day_part_meal.meal %>
+        <div class="contact-data-tr">
+          <div class="contact-data-td" id="day_part_meal_<%= day_part_meal.id %>">
+            <% if day_part_meal.eaten %>
+                Zjedzono :)
+            <% else %>
+                Jeszcze nie zjedzono...<br>
+                <%= link_to set_day_part_meal_as_eaten_path(day_part_meal), remote: true do %>
+                  Zmień :)
+                <% end %>
+            <% end %>
+          </div>
+          <div class="contact-data-td">
+            <%= link_to meal.title, meal_path(meal), target: "_blank" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

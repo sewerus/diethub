@@ -1,0 +1,13 @@
+//$("#callendar-target").html("<%#= j (render(
+                  partial: 'events/show_week',
+                  locals: {}
+              )) %>");
+$(".callendar-option").removeClass("active");
+$("#week-option").addClass("active");
+
+$("#week-table").removeClass("active-callendar");
+$("#callendar-day").removeClass("active-callendar");
+$("#callendar-week").addClass("active-callendar");
+$("#callendar-month").removeClass("active-callendar");
+
+$("#callendar-setup").addClass("active-callendar");

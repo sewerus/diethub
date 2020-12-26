@@ -14,6 +14,7 @@
  *= require_self
  *= require select2
  *= require select2-bootstrap
+ *= require simple_calendar
  */
 
 @import "bootstrap";
@@ -225,4 +226,7 @@ button.close {
 }
 .small-text {
   font-size: 10px;
+}
+.red-text {
+  color: red !important;
 }

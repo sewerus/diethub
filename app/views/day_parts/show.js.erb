@@ -1,0 +1,5 @@
+$("#modal-window").find(".modal-content").html("<%= j (render(
+                  partial: 'day_parts/show',
+                  locals: {day_part: @day_part}
+              )) %>");
+$("#modal-window").modal();

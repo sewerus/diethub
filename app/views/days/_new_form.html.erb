@@ -1,0 +1,21 @@
+<%= form_for day, url: create_day_path, validate: true, method: :patch, remote: true do |f| %>
+    <div class="edit-contact-data-table">
+      <div class="contact-data-tr">
+        <div class="contact-data-td">Wybór szablonu:</div>
+        <div class="contact-data-td" style="width: 100%">
+          <%= f.select :template_day_id, @patient.template_days.map{|day| [day.title, day.id]} %>
+          <script>
+            $( "#day_template_day_id" ).select2({
+              theme: "bootstrap"
+            });
+          </script>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td button-link">
+            <%= f.hidden_field :date, value: @day.date %>
+            <%= f.submit "Zapisz" %>
+        </div>
+      </div>
+    </div>
+<% end %>
