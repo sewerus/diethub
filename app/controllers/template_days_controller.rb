@@ -1,7 +1,7 @@
 class TemplateDaysController < ApplicationController
   before_action :set_template_day, only: [:edit, :update, :destroy]
   before_action :set_patient, only: [:index, :new]
-  before_action :admin_and_dietician_only
+  before_action :check_access, except: [:new, :create]
   
   def index
   end
@@ -9,10 +9,12 @@ class TemplateDaysController < ApplicationController
   def new
     @template_day = TemplateDay.new
     @template_day.patient = @patient
+    check_access
   end
   
   def create
     @template_day = TemplateDay.new(template_day_params)
+    check_access
 
     if @template_day.save
       respond_to do |format|
@@ -24,7 +26,6 @@ class TemplateDaysController < ApplicationController
   end
   
   def edit
-    
   end
   
   def update
@@ -49,14 +50,14 @@ class TemplateDaysController < ApplicationController
   def template_day_params
     params.require(:template_day).permit(:patient_id, :title)
   end
-  
+
   def set_template_day
     @template_day = TemplateDay.find_by(id: params[:id])
     if @template_day.nil?
       redirect_to root_path, alert: "Nie znaleziono szukanego szablonu dnia"
     end
   end
-  
+
   def set_patient
     @patient = Patient.find_by(id: params[:id])
     if @patient.nil?
@@ -64,8 +65,19 @@ class TemplateDaysController < ApplicationController
     end
   end
 
-  def admin_and_dietician_only
-    if !(current_user.is_a? Admin) and !(!@patient.nil? and @patient.dietician.id == current_user.id) and !(!@template_day.nil? and @template_day.patient.dietician.id == current_user.id)
+  #admin has access to everything
+  #new, create, edit, update, destroy -> dietician
+  #index -> dietician and patient
+  def check_access
+    result = false
+    if current_user.is_a? Admin
+      result = true
+    elsif !@template_day.nil?
+      result = @template_day.patient.dietician.id == current_user.id
+    elsif !@patient.nil?
+      result = @patient.id == current_user.id or @patient.dietician.id == current_user.id
+    end
+    unless result
       redirect_to root_path, alert: "Brak dostępu!"
     end
   end

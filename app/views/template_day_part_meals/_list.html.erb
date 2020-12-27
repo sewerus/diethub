@@ -8,11 +8,13 @@
           </div>
   <% end %>
 
-  <%= link_to new_template_day_part_meal_path(template_day_part) do %>
-      <div class="button-link small-text">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        Dodaj posiłek
-      </div>
+  <% if template_day_part.can_edit?(current_user) %>
+    <%= link_to new_template_day_part_meal_path(template_day_part) do %>
+        <div class="button-link small-text">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Dodaj posiłek
+        </div>
+    <% end %>
   <% end %>
 
 </div>

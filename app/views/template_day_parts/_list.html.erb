@@ -8,12 +8,13 @@
           </div>
   <% end %>
 
-
+  <% if template_day.can_edit?(current_user) %>
       <%= link_to new_template_day_part_path(template_day), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window'} do %>
           <div class="button-link small-text">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             Nowa pora dnia
           </div>
       <% end %>
+  <% end %>
 
 </div>

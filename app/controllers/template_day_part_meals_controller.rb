@@ -2,7 +2,7 @@ class TemplateDayPartMealsController < ApplicationController
   before_action :set_template_day_part_meal, only: :destroy
   before_action :set_template_day_part, only: [:new, :create]
   before_action :set_meal, only: :create
-  before_action :admin_and_dietician_only
+  before_action :check_access
 
   def new
     meals = Meal.all
@@ -57,8 +57,18 @@ class TemplateDayPartMealsController < ApplicationController
     end
   end
 
-  def admin_and_dietician_only
-    if !(current_user.is_a? Admin) and !(!@template_day_part.nil? and @template_day_part.template_day.patient.dietician.id == current_user.id) and !(!@template_day_part_meal.nil? and @template_day_part_meal.template_day_part.template_day.patient.dietician.id == current_user.id)
+  #admin has access to everything
+  #new, create, destroy -> dietician
+  def check_access
+    result = false
+    if current_user.is_a? Admin
+      result = true
+    elsif !@template_day_part.nil?
+      result = @template_day_part.template_day.patient.dietician.id == current_user.id
+    elsif !@template_day_part_meal.nil?
+      result = @template_day_part_meal.template_day_part.template_day.patient.dietician.id == current_user.id
+    end
+    unless result
       redirect_to root_path, alert: "Brak dostępu!"
     end
   end

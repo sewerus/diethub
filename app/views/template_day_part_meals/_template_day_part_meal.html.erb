@@ -3,9 +3,11 @@
     <% meal = template_day_part_meal.meal %>
     <%= link_to meal.title, meal_path(meal), target: "_blank" %>
   </div>
-  <div class="small-text">
-    <%= link_to template_day_part_meal_path(template_day_part_meal), remote: true, method: :delete, class: "small-text", :data => {:confirm => 'Jesteś pewien?'} do %>
-      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-    <% end %>
-  </div>
+  <% if template_day_part_meal.can_edit?(current_user) %>
+    <div class="small-text">
+      <%= link_to template_day_part_meal_path(template_day_part_meal), remote: true, method: :delete, class: "small-text", :data => {:confirm => 'Jesteś pewien?'} do %>
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+      <% end %>
+    </div>
+  <% end %>
 </div>

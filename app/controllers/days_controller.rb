@@ -1,6 +1,33 @@
 class DaysController < ApplicationController
-  before_action :set_patient, only: [:index, :new, :show_day, :show_week, :show_month, :change_week, :change_day, :change_month]
-  before_action :set_date, only: [:new, :show_day, :show_week, :show_month, :change_week, :change_day, :change_month]
+  before_action :set_patient, only: [
+      :index,
+      :new,
+      :show_day,
+      :show_week,
+      :show_month,
+      :change_week,
+      :change_day,
+      :change_month
+  ]
+  before_action :set_date, only: [
+      :new,
+      :show_day,
+      :show_week,
+      :show_month,
+      :change_week,
+      :change_day,
+      :change_month
+  ]
+  before_action :check_access, only: [
+      :index,
+      :new,
+      :show_day,
+      :show_week,
+      :show_month,
+      :change_week,
+      :change_day,
+      :change_month
+  ]
 
   def index
   end
@@ -15,6 +42,7 @@ class DaysController < ApplicationController
 
   def create
     @day = Day.generate_from_params(params)
+    check_access
   end
 
   def show_day
@@ -58,6 +86,21 @@ class DaysController < ApplicationController
       @date = Date.today
     else
       @date = Date.parse(params[:date].gsub("_", "."))
+    end
+  end
+
+  def check_access
+    result = false
+    if current_user.is_a? Admin
+      result = true
+    elsif !@patient.nil?
+      result = current_user.id == @patient.id or current_user.id == @patient.dietician.id
+    elsif !@day.nil?
+      patient = @day.patient
+      result = current_user.id == patient.id or current_user.id == patient.dietician.id
+    end
+    unless result
+      redirect_to root_path, alert: "Brak dostępu!"
     end
   end
 end

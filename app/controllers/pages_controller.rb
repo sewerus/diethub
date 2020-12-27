@@ -7,7 +7,7 @@ class PagesController < ApplicationController
     elsif current_user.is_a? Dietician
       redirect_to my_patients_path
     elsif current_user.is_a? Patient
-      redirect_to user_path(current_user)
+      redirect_to days_path(current_user)
     else
       redirect_to user_path(current_user)
     end

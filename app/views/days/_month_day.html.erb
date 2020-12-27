@@ -7,13 +7,14 @@
 </div>
 
 <div class="month-callendar-events-box">
-  <% founed_day = user.get_day(day) %>
-  <% if founed_day.nil? %>
+  <% founded_day = user.get_day(day) %>
+  <% if founded_day.nil? %>
       Nic...
   <% else %>
+      <%= founded_day.day_parts.count %> pór posiłków<br>
       <% count_all = 0 %>
       <% count_eaten = 0 %>
-      <% founed_day.day_parts.map{|day_part| day_part.day_part_meals}.sum.each do |day_part_meal|
+      <% founded_day.day_parts.map{|day_part| day_part.day_part_meals}.sum.each do |day_part_meal|
         count_all += 1
         if day_part_meal.eaten
           count_eaten += 1

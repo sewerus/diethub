@@ -44,26 +44,50 @@
       </div>
     </div>
 
+    <div class="menu-box">
+      <div class="menu-head">
+        <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+      </div>
+      <div>
+        <ul class="nav navbar-nav">
+
+          <li class='nav-item'>
+            <%= link_to products_path, class: 'nav-link' do %>
+                <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>Składniki
+            <% end %>
+          </li>
+          <li class='nav-item'>
+            <%= link_to meals_path, class: 'nav-link' do %>
+                <span class="glyphicon glyphicon-book" aria-hidden="true"></span>Posiłki
+            <% end %>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+<% elsif current_user.is_a? Patient %>
+
+    <div class="menu-box">
+      <div class="menu-head">
+        <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+      </div>
+      <div>
+        <ul class="nav navbar-nav">
+
+          <li class='nav-item'>
+            <%= link_to days_path(current_user), class: 'nav-link' do %>
+                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Mój kalendarz
+            <% end %>
+          </li>
+          <li class='nav-item'>
+            <%= link_to template_days_path(current_user), class: 'nav-link' do %>
+                <span class="glyphicon glyphicon-book" aria-hidden="true"></span>Moje szablony
+            <% end %>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
 <% end %>
-
-<div class="menu-box">
-  <div class="menu-head">
-    <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
-  </div>
-  <div>
-    <ul class="nav navbar-nav">
-
-      <li class='nav-item'>
-        <%= link_to products_path, class: 'nav-link' do %>
-            <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>Składniki
-        <% end %>
-      </li>
-      <li class='nav-item'>
-        <%= link_to meals_path, class: 'nav-link' do %>
-            <span class="glyphicon glyphicon-book" aria-hidden="true"></span>Posiłki
-        <% end %>
-      </li>
-
-    </ul>
-  </div>
-</div>
