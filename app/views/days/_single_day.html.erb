@@ -18,6 +18,12 @@
             <% end %>
           <% end %>
         </div>
+        <div class="small-text">
+            <%= link_to new_training_path(user, day.strftime("%d_%m_%Y")), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window'} do %>
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  Nowy trening
+            <% end %>
+        </div>
   </div>
   <div class="day_content" id="<%= prefix %>day_content_<%= day.strftime("%d_%m_%Y") %>">
     <%= render(

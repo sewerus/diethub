@@ -18,7 +18,7 @@ class TemplateDayPartsController < ApplicationController
         format.js
       end
     else
-      redirect_to template_day_parts_path(@template_day_part.template_day.patient), alert: 'Nie udało się zapisać zmian.'
+      redirect_to template_days_path(@template_day_part.template_day.patient), alert: 'Nie udało się zapisać zmian.'
     end
   end
 
@@ -31,7 +31,7 @@ class TemplateDayPartsController < ApplicationController
         format.js
       end
     else
-      redirect_to template_day_parts_path(@template_day_part.template_day.patient), alert: 'Nie udało się zapisać zmian.'
+      redirect_to template_days_path(@template_day_part.template_day.patient), alert: 'Nie udało się zapisać zmian.'
     end
   end
 

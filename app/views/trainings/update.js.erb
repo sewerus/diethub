@@ -1,0 +1,9 @@
+$("#modal-window").find(".close").click();
+
+$("#training_<%= @training.id %>").html(
+    "<%=  escape_javascript(
+          render(
+            partial: 'trainings/training',
+            locals: {training: @training}
+            )
+          ) %>");

@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <div class="day-part-header">
+    <%= link_to edit_training_path(training), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window'} do %>
+        <span class="glyphicon glyphicon-pencil"></span> Edycja
+    <% end %>
+    <%= link_to training_path(training), {method: :delete, :remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window'} do %>
+        <span class="glyphicon glyphicon-trash"></span> Usuń
+    <% end %>
+  </div>
+  <button type="button" class="close" data-dismiss="modal">x</button>
+</div>
+
+<div class="modal-body user-show" style="width: 100%">
+
+  <div class="day-part title">
+    Trening
+  </div>
+  <div class="day-part time">
+    <%= Day.day_names[training.date.wday-1] %>,
+    <%= training.hour %>:<% if training.minute < 10 %>0<% end %><%= training.minute %>
+    <% if training.time_length.to_i != 0 %>
+        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= training.time_length %> min
+    <% end %>
+  </div>
+
+  <% unless training.description.to_s.empty? %>
+      <div class="day-part-description">
+          <%= training.description.gsub("\n", "<br>").html_safe %>
+      </div>
+  <% end %>
+
+</div>

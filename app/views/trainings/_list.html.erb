@@ -1,0 +1,8 @@
+<% user.trainings.where(date: date).at_hour(hour).order(:hour, :minute).each do |training| %>
+        <div class="day-part" id="training_<%= training.id %>">
+          <%= render(
+                partial: "trainings/training",
+                locals: {training: training}
+              ) %>
+        </div>
+<% end %>

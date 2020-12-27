@@ -10,6 +10,9 @@ class Patient < User
   #days
   has_many :days, dependent: :destroy
 
+  #trainings
+  has_many :trainings, dependent: :destroy
+
   def update_dietician(new_dietician_id = nil)
     unless self.dieticians_relationship.nil?
       self.dieticians_relationship.destroy

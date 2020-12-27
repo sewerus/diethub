@@ -5,9 +5,9 @@
           <div class="callendar-hour">
 
             <div class="day-parts">
-              <% founed_day = user.get_day(day) %>
-              <% unless founed_day.nil? %>
-                <% day_parts = founed_day.day_parts.at_hour(hour) %>
+              <% founded_day = user.get_day(day) %>
+              <% unless founded_day.nil? %>
+                <% day_parts = founded_day.day_parts.at_hour(hour) %>
                 <% day_parts.each do |day_part| %>
                     <div id="day_part_<%= day_part.id %>" class="day-part">
                       <%= render(
@@ -16,6 +16,10 @@
                           ) %>
                     </div>
                 <% end %>
+                <%= render(
+                        partial: "trainings/list",
+                        locals: {date: day, user: user, hour: hour}
+                    ) %>
               <% end %>
             </div>
 

@@ -67,7 +67,7 @@ Rails.application.routes.draw do
   get '/template_day_part/:id/add_meal/:meal_id' => 'template_day_part_meals#create', as: :create_template_day_part_meal
 
   #days
-  get '/new/:user_id/:date' => 'days#new', as: :new_day
+  get '/days/new/:user_id/:date' => 'days#new', as: :new_day
   patch '/day' => 'days#create', as: :create_day
   get '/patients/:user_id/callendar' => 'days#index', as: :days
   get '/callendar/show_day/:user_id(/:date)' => 'days#show_day', as: :show_day
@@ -84,5 +84,11 @@ Rails.application.routes.draw do
 
   #day_part_meals
   get '/day_part_meals/:id/set_as_eaten' => 'day_part_meals#set_as_eaten', as: :set_day_part_meal_as_eaten
+
+  #trainings
+  resources :trainings, only: [:show, :edit, :destroy]
+  get '/trainings/new/:user_id/:date' => 'trainings#new', as: :new_training
+  patch '/trainings' => 'trainings#create', as: :create_training
+  patch '/trainings/:id' => 'trainings#update', as: :update_training
 
 end

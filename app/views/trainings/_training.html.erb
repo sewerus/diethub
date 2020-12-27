@@ -1,0 +1,15 @@
+<%= link_to training_path(training), remote: true do %>
+    <div class="day-part-title day-part-time">
+      <div class="small-text">
+        <%= training.hour %>:<% if training.minute < 10 %>0<% end %><%= training.minute %>
+        <% if training.time_length.to_i != 0 %>
+            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= training.time_length %> min
+        <% end %>
+      </div>
+    </div>
+    <div class="day-part-title">
+    <span>
+      Trening
+    </span>
+    </div>
+<% end %>
