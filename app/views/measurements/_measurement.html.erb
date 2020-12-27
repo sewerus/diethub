@@ -12,4 +12,7 @@
           Pomiar masy: <%= measurement.weight.to_f.round(2) %> kg
         </span>
     <% end %>
+    <% unless measurement.measurement_files.empty? %>
+        <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+    <% end %>
 <% end %>

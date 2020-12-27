@@ -16,6 +16,7 @@ class MeasurementsController < ApplicationController
     check_access
 
     if @measurement.save
+      @measurement.add_measurement_files_by_tokens(params[:authenticity_token])
       respond_to do |format|
         format.js
       end
@@ -32,6 +33,7 @@ class MeasurementsController < ApplicationController
 
   def update
     if @measurement.update_attributes(measurement_params)
+      @measurement.add_measurement_files_by_tokens(params[:authenticity_token])
       respond_to do |format|
         format.js
       end

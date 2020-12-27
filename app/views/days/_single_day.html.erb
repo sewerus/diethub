@@ -24,7 +24,7 @@
                   Nowy trening
             <% end %>
         </div>
-        <div id="measurements_box_<%= day.strftime("%d_%m_%Y") %>" class="small-text">
+        <div id="<%= prefix %>measurements_box_<%= day.strftime("%d_%m_%Y") %>" class="small-text">
           <%= render(
               partial: "measurements/measurements_box",
               locals: {user: user, day: day}

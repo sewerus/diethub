@@ -79,6 +79,8 @@ gem 'client_side_validations'
 gem 'jquery-ui-rails'
 gem 'rails_sortable'
 gem 'simple_calendar', "~> 2.0"
+gem 'carrierwave', '~> 2.0'
+gem 'dropzonejs-rails'
 
 group :development do
   gem 'better_errors'

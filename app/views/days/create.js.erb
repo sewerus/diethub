@@ -4,6 +4,10 @@ $("#day_content_<%= @day.date.strftime("%d_%m_%Y") %>").html("<%= j (render(
                     partial: 'days/day_content',
                     locals: {day: @day.date.to_date, user: @day.patient}
                 )) %>");
+$("#single_day_content_<%= @day.date.strftime("%d_%m_%Y") %>").html("<%= j (render(
+                    partial: 'days/day_content',
+                    locals: {day: @day.date.to_date, user: @day.patient}
+                )) %>");
 $("#month_day_<%= @day.date.strftime("%d_%m_%Y") %>").html("<%= j (render(
                     partial: "days/month_day",
                     locals: {day: @day.date.to_date, start_date: @day.date.to_date, user: @day.patient}

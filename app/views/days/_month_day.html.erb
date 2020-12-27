@@ -40,7 +40,17 @@
       <% unless measurements.empty? %>
           <br>
           <% measurements.each do |measurement| %>
-              Pomiar masy: <%= measurement.weight.to_f.round(2) %> kg<br>
+                <% if measurement.sleep_time.to_f != 0.0 %>
+                  Czas snu: <%= measurement.sleep_time.to_f.round(2) %> h<br>
+                <% end %>
+                <% if measurement.weight.to_f != 0.0 %>
+                  Pomiar masy: <%= measurement.weight.to_f.round(2) %> kg<br>
+                <% end %>
+                <% unless measurement.measurement_files.empty? %>
+                    <%= link_to measurement_path(measurement), remote: true do %>
+                      <span class="glyphicon glyphicon-camera" aria-hidden="true"></span><br>
+                    <% end %>
+                <% end %>
           <% end %>
       <% end %>
   <% end %>

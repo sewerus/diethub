@@ -1,3 +1,67 @@
+<div class="edit-contact-data-table">
+  <div class="contact-data-tr">
+    <div class="contact-data-td">
+      Zdjęcia
+    </div>
+    <div class="contact-data-td">
+      <% token = form_authenticity_token %>
+      <%= form_tag upload_for_measurement_path, method: :post, class: "dropzone", id: "measurement-dropzone" do %>
+          <input name="authenticity_token" type="hidden" value="<%= token %>" />
+          <div class="fallback">
+            <%= file_field_tag "media", multiple: true%>
+          </div>
+          <div class="dz-message">Przeciągnij i upuść tutaj lub kliknij, aby wybrać</div>
+      <% end %>
+      <script>
+        $(function() {
+          var mediaDropzone;
+          mediaDropzone = new Dropzone("#measurement-dropzone", {
+            maxFilesize: 2000, // MB
+            maxFiles: 20,
+            parallelUploads: 20,
+            addRemoveLinks: true,
+            dictRemoveFile: "Usuń",
+            dictCancelUpload: "Anuluj",
+            dictCancelUploadConfirmation: "Czy jesteś pewien, że chcesz anulować przesyłanie pliku?"
+          });
+          var submit_button = $("form").find("input[type='submit']");
+          var old_title = submit_button.val();
+          mediaDropzone.on("addedfile", function(file) {
+            submit_button.prop('disabled', true);
+            submit_button.val("Trwa dodawanie plików");
+          });
+          mediaDropzone.on("queuecomplete", function() {
+            submit_button.prop('disabled', false);
+            submit_button.val(old_title);
+          });
+          mediaDropzone.on("removedfile", function(file) {
+            console.log(file);
+            var id = JSON.parse(file.xhr.response).id;
+            Rails.ajax({
+              url: '/measurement_files/' + id,
+              type: 'delete',
+              success: function(result) {
+              }
+            });
+            submit_button.prop('disabled', false);
+            submit_button.val(old_title);
+          });
+        });
+      </script>
+    </div>
+  </div>
+</div>
+
+<% measurement.measurement_files.each do |file| %>
+    <div class="day-part-description measurement-file" id="measurement_file_<%= file.id %>">
+      <%= image_tag(file.measurement_file.url) %>
+
+      <%= link_to measurement_file_path(file), {method: :delete, :remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window'} do %>
+          <span class="glyphicon glyphicon-trash"></span> Usuń
+      <% end %>
+    </div>
+<% end %>
+
 <%= form_for measurement, url: update_measurement_path(measurement), validate: true, method: :patch, remote: true do |f| %>
     <div class="edit-contact-data-table">
       <div class="contact-data-tr">
@@ -18,6 +82,7 @@
       </div>
       <div class="contact-data-tr">
         <div class="contact-data-td button-link">
+            <%= hidden_field_tag :authenticity_token, token %>
             <%= f.submit "Zapisz" %>
         </div>
       </div>

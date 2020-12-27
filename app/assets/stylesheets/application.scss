@@ -15,6 +15,7 @@
  *= require select2
  *= require select2-bootstrap
  *= require simple_calendar
+ *= require dropzone/basic
  */
 
 @import "bootstrap";
@@ -217,8 +218,8 @@ input[type=submit], .select2 {
 .modal-content {
   background-color: black;
   box-shadow: 0 0 3px darkolivegreen, 0 0 5px darkolivegreen, 0 0 7px darkolivegreen, 0 0 10px darkolivegreen, inset 0 0 10px darkolivegreen;
-  .edit-contact-data-table {
-    width: 100%;
+  form, .user-show {
+    text-align: center;
   }
 }
 button.close {

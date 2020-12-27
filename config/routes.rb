@@ -96,5 +96,9 @@ Rails.application.routes.draw do
   get '/measurements/new/:user_id/:date' => 'measurements#new', as: :new_measurement
   patch '/measurements' => 'measurements#create', as: :create_measurement
   patch '/measurements/:id' => 'measurements#update', as: :update_measurement
+  
+  #measurement_files
+  resources :measurement_files, only: [:destroy]
+  post '/measurement_files/upload_for_measurement' => 'measurement_files#upload_for_measurement', as: :upload_for_measurement
 
 end

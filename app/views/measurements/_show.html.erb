@@ -32,4 +32,10 @@
     </div>
   <% end %>
 
+  <% measurement.measurement_files.each do |file| %>
+      <div class="day-part-description measurement-file" id="measurement_file_<%= file.id %>">
+        <%= image_tag(file.measurement_file.url) %>
+      </div>
+  <% end %>
+
 </div>

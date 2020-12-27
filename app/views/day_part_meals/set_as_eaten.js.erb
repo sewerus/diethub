@@ -6,6 +6,11 @@ $("#day_part_<%= day_part.id %>").html(
                   partial: 'day_parts/day_part',
                   locals: {day_part: day_part}
               )) %>");
+$("#single_day_part_<%= day_part.id %>").html(
+    "<%= j (render(
+                  partial: 'day_parts/day_part',
+                  locals: {day_part: day_part}
+              )) %>");
 
 <% day = day_part.day %>
 $("#month_day_<%= day.date.strftime("%d_%m_%Y") %>").html("<%= j (render(

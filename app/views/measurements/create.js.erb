@@ -5,6 +5,10 @@ $("#modal-window").find(".close").click();
               partial: "measurements/measurements_box",
               locals: {user: @measurement.patient, day: date}
               )) %>");
+  $("#single_measurements_box_<%= date.strftime("%d_%m_%Y") %>").html("<%= j (render(
+              partial: "measurements/measurements_box",
+              locals: {user: @measurement.patient, day: date}
+              )) %>");
   $("#month_day_<%= date.strftime("%d_%m_%Y") %>").html("<%= j (render(
                       partial: "days/month_day",
                       locals: {day: date, start_date: date, user: @measurement.patient}
