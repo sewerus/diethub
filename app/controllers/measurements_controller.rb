@@ -1,26 +1,26 @@
-class TrainingsController < ApplicationController
-  before_action :set_training, only: [:show, :edit, :update, :destroy]
+class MeasurementsController < ApplicationController
+  before_action :set_measurement, only: [:show, :edit, :update, :destroy]
   before_action :set_patient, only: [:new]
   before_action :set_date, only: [:new]
   before_action :check_access, except: [:new, :create]
 
   def new
-    @training = Training.new
-    @training.patient = @patient
-    @training.date = @date
+    @measurement = Measurement.new
+    @measurement.patient = @patient
+    @measurement.date = @date
     check_access
   end
 
   def create
-    @training = Training.new(training_params)
+    @measurement = Measurement.new(measurement_params)
     check_access
 
-    if @training.save
+    if @measurement.save
       respond_to do |format|
         format.js
       end
     else
-      redirect_to days_path(@training.day.patient), alert: 'Nie udało się zapisać zmian.'
+      redirect_to days_path(@measurement.day.patient), alert: 'Nie udało się zapisać zmian.'
     end
   end
 
@@ -31,17 +31,17 @@ class TrainingsController < ApplicationController
   end
 
   def update
-    if @training.update_attributes(training_params)
+    if @measurement.update_attributes(measurement_params)
       respond_to do |format|
         format.js
       end
     else
-      redirect_to days_path(@training.day.patient), alert: 'Nie udało się zapisać zmian.'
+      redirect_to days_path(@measurement.day.patient), alert: 'Nie udało się zapisać zmian.'
     end
   end
 
   def destroy
-    @training.destroy
+    @measurement.destroy
     respond_to do |format|
       format.js
     end
@@ -49,13 +49,13 @@ class TrainingsController < ApplicationController
 
   private
 
-  def training_params
-    params.require(:training).permit(:patient_id, :date, :hour, :minute, :time_length, :description)
+  def measurement_params
+    params.require(:measurement).permit(:patient_id, :date, :weight, :sleep_time)
   end
 
-  def set_training
-    @training = Training.find_by(id: params[:id])
-    if @training.nil?
+  def set_measurement
+    @measurement = Measurement.find_by(id: params[:id])
+    if @measurement.nil?
       redirect_to root_path, alert: "Nie znaleziono szukanego dnia"
     end
   end
@@ -81,8 +81,8 @@ class TrainingsController < ApplicationController
     result = false
     if current_user.is_a? Admin
       result = true
-    elsif !@training.nil?
-      patient = @training.patient
+    elsif !@measurement.nil?
+      patient = @measurement.patient
       result = patient.id == current_user.id or patient.dietician.id == current_user.id
     end
     unless result

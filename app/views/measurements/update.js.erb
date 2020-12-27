@@ -1,0 +1,9 @@
+$("#modal-window").find(".close").click();
+
+$("#measurement_<%= @measurement.id %>").html(
+    "<%=  escape_javascript(
+          render(
+            partial: 'measurements/measurement',
+            locals: {measurement: @measurement}
+            )
+          ) %>");

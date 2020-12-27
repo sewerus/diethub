@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="myModalLabel">Edycja pomiaru dnia <%= measurement.date.strftime("%d.%m.%Y") %></h4>
+  <button type="button" class="close" data-dismiss="modal">x</button>
+</div>
+
+<div class="modal-body user-show">
+
+  <%= render(
+          partial: "measurements/edit_form",
+          locals: {measurement: measurement}
+      ) %>
+
+</div>

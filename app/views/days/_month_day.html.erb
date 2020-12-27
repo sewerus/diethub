@@ -6,33 +6,41 @@
   <% end %>
 </div>
 
-<div class="month-callendar-events-box">
+<div class="month-callendar-events-box small-text">
   <% founded_day = user.get_day(day) %>
   <% trainings = user.trainings.where(date: day) %>
-  <% if founded_day.nil? and trainings.empty? %>
+  <% measurements = user.measurements.where(date: day) %>
+  <% if founded_day.nil? and trainings.empty? and measurements.empty? %>
       Nic...
   <% else %>
       <% unless founded_day.nil? %>
-        <%= founded_day.day_parts.count %> pór posiłków<br>
-        <% count_all = 0 %>
-        <% count_eaten = 0 %>
-        <% founded_day.day_parts.map{|day_part| day_part.day_part_meals}.sum.each do |day_part_meal|
-          count_all += 1
-          if day_part_meal.eaten
-            count_eaten += 1
-           end
-          end %>
-        Zjedzono <%= count_eaten %>/<%= count_all %>
+          <% day_parts_count = founded_day.day_parts.count %>
+          <% if day_parts_count == 1 %>
+              1 pora posiłków
+          <% elsif day_parts_count % 10 < 5 %>
+              <%= day_parts_count %> pory posiłków
+          <% else %>
+              <%= founded_day.day_parts.count %> pór posiłków
+           <% end %>
+          <br>
+          <% count_all = 0 %>
+          <% count_eaten = 0 %>
+          <% founded_day.day_parts.map{|day_part| day_part.day_part_meals}.sum.each do |day_part_meal|
+            count_all += 1
+            if day_part_meal.eaten
+              count_eaten += 1
+             end
+            end %>
+          Zjedzono posiłków <%= count_eaten %>/<%= count_all %>
       <% end %>
       <% unless trainings.empty? %>
           <br>
-          <% trainings_count = trainings.count %>
-          <% if trainings_count == 1 %>
-            1 trening
-          <% elsif trainings_count % 10 > 1 and trainings_count % 10 < 5 %>
-            <%= trainings_count %> treningi
-          <% else %>
-            <%= trainings_count %> treningów
+          Trening: <%= trainings.pluck(:time_length).sum %> min
+      <% end %>
+      <% unless measurements.empty? %>
+          <br>
+          <% measurements.each do |measurement| %>
+              Pomiar masy: <%= measurement.weight.to_f.round(2) %> kg<br>
           <% end %>
       <% end %>
   <% end %>

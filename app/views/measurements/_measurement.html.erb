@@ -1,0 +1,15 @@
+<%= link_to measurement_path(measurement), remote: true do %>
+    <% if measurement.sleep_time.to_f != 0.0 %>
+      <span class="small-text">
+        Czas snu: <%= measurement.sleep_time.to_f.round(2) %> h
+      </span>
+    <% end %>
+    <% if measurement.weight.to_f != 0.0 %>
+        <% if measurement.sleep_time.to_f != 0.0 %>
+          <br>
+        <% end %>
+        <span class="small-text">
+          Pomiar masy: <%= measurement.weight.to_f.round(2) %> kg
+        </span>
+    <% end %>
+<% end %>

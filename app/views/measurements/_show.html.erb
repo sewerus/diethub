@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <div class="day-part-header">
+    <%= link_to edit_measurement_path(measurement), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window'} do %>
+        <span class="glyphicon glyphicon-pencil"></span> Edycja
+    <% end %>
+    <%= link_to measurement_path(measurement), {method: :delete, :remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window'} do %>
+        <span class="glyphicon glyphicon-trash"></span> Usuń
+    <% end %>
+  </div>
+  <button type="button" class="close" data-dismiss="modal">x</button>
+</div>
+
+<div class="modal-body user-show" style="width: 100%">
+
+  <div class="day-part title">
+    Pomiar
+  </div>
+  <div class="day-part time">
+    <%= measurement.date.strftime("%d.%m.%Y") %>,
+    <%= Day.day_names[measurement.date.wday-1] %>
+  </div>
+
+  <% if measurement.sleep_time.to_f != 0.0 %>
+    <div class="day-part-description">
+        Czas snu: <%= measurement.sleep_time.to_f.round(2) %> h
+    </div>
+  <% end %>
+
+  <% if measurement.weight.to_f != 0.0 %>
+    <div class="day-part-description">
+        Pomiar masy: <%= measurement.weight.to_f.round(2) %> kg
+    </div>
+  <% end %>
+
+</div>

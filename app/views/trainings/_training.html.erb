@@ -3,7 +3,7 @@
       <div class="small-text">
         <%= training.hour %>:<% if training.minute < 10 %>0<% end %><%= training.minute %>
         <% if training.time_length.to_i != 0 %>
-            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= training.time_length %> min
+            <span class="glyphicon glyphicon-time" aria-hidden="true"></span><%= training.time_length %> min
         <% end %>
       </div>
     </div>

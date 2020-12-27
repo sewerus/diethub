@@ -1,0 +1,11 @@
+<% if user.measurements.where(date: day).empty? %>
+    <%= link_to new_measurement_path(user, day.strftime("%d_%m_%Y")), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window'} do %>
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Nowy pomiar
+    <% end %>
+<% else %>
+    <%= render(
+            partial: "measurements/list",
+            locals: {date: day, user: user}
+        ) %>
+<% end %>

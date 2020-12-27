@@ -1,0 +1,10 @@
+<div class="measurements">
+  <% user.measurements.where(date: date).each do |measurement| %>
+      <div class="day-part" id="measurement_<%= measurement.id %>">
+        <%= render(
+                partial: "measurements/measurement",
+                locals: {measurement: measurement}
+            ) %>
+      </div>
+  <% end %>
+</div>

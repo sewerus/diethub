@@ -12,9 +12,9 @@
         <div class="small-text">
           <%= link_to new_day_path(user, day.strftime("%d_%m_%Y")), remote: true do %>
             <% if user.get_day(day).nil? %>
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Wybierz
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Wybierz posiłki
             <% else %>
-              <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Zmień
+              <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Wymień posiłki
             <% end %>
           <% end %>
         </div>
@@ -23,6 +23,12 @@
                   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                   Nowy trening
             <% end %>
+        </div>
+        <div id="measurements_box_<%= day.strftime("%d_%m_%Y") %>" class="small-text">
+          <%= render(
+              partial: "measurements/measurements_box",
+              locals: {user: user, day: day}
+              ) %>
         </div>
   </div>
   <div class="day_content" id="<%= prefix %>day_content_<%= day.strftime("%d_%m_%Y") %>">

@@ -91,4 +91,10 @@ Rails.application.routes.draw do
   patch '/trainings' => 'trainings#create', as: :create_training
   patch '/trainings/:id' => 'trainings#update', as: :update_training
 
+  #measurements
+  resources :measurements, only: [:show, :edit, :destroy]
+  get '/measurements/new/:user_id/:date' => 'measurements#new', as: :new_measurement
+  patch '/measurements' => 'measurements#create', as: :create_measurement
+  patch '/measurements/:id' => 'measurements#update', as: :update_measurement
+
 end

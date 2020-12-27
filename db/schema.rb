@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_27_134112) do
+ActiveRecord::Schema.define(version: 2020_12_27_174643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2020_12_27_134112) do
     t.bigint "patient_id"
     t.date "date"
     t.bigint "template_day_id"
-    t.integer "sleep_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["patient_id"], name: "index_days_on_patient_id"
@@ -77,6 +76,16 @@ ActiveRecord::Schema.define(version: 2020_12_27_134112) do
     t.datetime "updated_at", null: false
     t.index ["meal_id"], name: "index_meals_products_relationships_on_meal_id"
     t.index ["product_id"], name: "index_meals_products_relationships_on_product_id"
+  end
+
+  create_table "measurements", force: :cascade do |t|
+    t.bigint "patient_id"
+    t.date "date"
+    t.decimal "weight", precision: 7, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "sleep_time"
+    t.index ["patient_id"], name: "index_measurements_on_patient_id"
   end
 
   create_table "products", force: :cascade do |t|

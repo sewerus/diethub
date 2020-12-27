@@ -1,0 +1,27 @@
+<%= form_for measurement, url: create_measurement_path, validate: true, method: :patch, remote: true do |f| %>
+    <div class="edit-contact-data-table">
+      <div class="contact-data-tr">
+        <div class="contact-data-td">
+          Czas snu [godziny]:
+        </div>
+        <div class="contact-data-td">
+          <%= f.number_field :sleep_time, step: 0.01, min: 0 %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td">
+          Waga [kg]:
+        </div>
+        <div class="contact-data-td">
+          <%= f.number_field :weight, step: 0.01, min: 0 %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td button-link">
+            <%= f.hidden_field :patient_id, value: measurement.patient.id %>
+            <%= f.hidden_field :date, value: measurement.date %>
+            <%= f.submit "Zapisz" %>
+        </div>
+      </div>
+    </div>
+<% end %>
