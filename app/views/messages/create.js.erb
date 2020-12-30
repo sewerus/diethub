@@ -1,0 +1,9 @@
+$("#modal-window").find(".close").click();
+
+$("#message_user_<%= @message.addressee_id %>").html(
+    "<%=  escape_javascript(
+          render(
+            partial: 'messages/list',
+            locals: {user: @message.addressee, messages: Message.talk(current_user, @message.addressee)}
+            )
+          ) %>");

@@ -1,0 +1,7 @@
+$("#messages_button_<%= @user.id %>").html(
+    "<%=  escape_javascript(
+          render(
+            partial: 'messages/messages_button',
+            locals: {user: @user, read_all: true}
+            )
+          ) %>");

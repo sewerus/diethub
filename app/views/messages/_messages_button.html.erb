@@ -1,0 +1,15 @@
+<% if read_all %>
+    <%= link_to new_message_path(user), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window'} do %>
+        <div class="button-link small-text">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Nowa wiadomość
+        </div>
+    <% end %>
+<% else %>
+    <%= link_to set_messages_as_read_path(user), {:remote => true} do %>
+        <div class="button-link small-text">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Oznacz wszystkie jako przeczytane
+        </div>
+    <% end %>
+<% end %>

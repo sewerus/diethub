@@ -1,0 +1,14 @@
+<div class="contact-data-table messages-table">
+
+  <div class="contact-data-tr">
+    <% users_messages = users.map{|user| [user, Message.talk(current_user, user).order(created_at: :asc)]} %>
+    <% users_messages.sort_by{|user, messages| -messages.unread.count }.each do |user, messages| %>
+        <div class="contact-data-td" id="message_user_<%= user.id %>">
+          <%= render(
+                partial: "messages/list",
+                locals: {messages: messages, user: user}
+              ) %>
+        </div>
+    <% end %>
+  </div>
+</div>

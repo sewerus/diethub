@@ -15,6 +15,33 @@
                 <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>Użytkownicy
             <% end %>
           </li>
+          <li class='nav-item'>
+            <%= link_to messages_path, class: 'nav-link' do %>
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Wiadomości (<%= current_user.addressee_messages.unread.count %>)
+            <% end %>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+    <div class="menu-box">
+      <div class="menu-head">
+        <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+      </div>
+      <div>
+        <ul class="nav navbar-nav">
+
+          <li class='nav-item'>
+            <%= link_to products_path, class: 'nav-link' do %>
+                <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>Składniki
+            <% end %>
+          </li>
+          <li class='nav-item'>
+            <%= link_to meals_path, class: 'nav-link' do %>
+                <span class="glyphicon glyphicon-book" aria-hidden="true"></span>Posiłki
+            <% end %>
+          </li>
 
         </ul>
       </div>
@@ -37,6 +64,11 @@
           <li class='nav-item'>
             <%= link_to my_patients_path, class: 'nav-link' do %>
                 <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>Lista pacjentów
+            <% end %>
+          </li>
+          <li class='nav-item'>
+            <%= link_to messages_path, class: 'nav-link' do %>
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Wiadomości (<%= current_user.addressee_messages.unread.count %>)
             <% end %>
           </li>
 
@@ -83,6 +115,16 @@
           <li class='nav-item'>
             <%= link_to template_days_path(current_user), class: 'nav-link' do %>
                 <span class="glyphicon glyphicon-book" aria-hidden="true"></span>Moje szablony
+            <% end %>
+          </li>
+          <li class='nav-item'>
+            <%= link_to "#", class: 'nav-link' do %>
+                <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>Moje statystyki
+            <% end %>
+          </li>
+          <li class='nav-item'>
+            <%= link_to messages_path, class: 'nav-link' do %>
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Wiadomości (<%= current_user.addressee_messages.unread.count %>)
             <% end %>
           </li>
 

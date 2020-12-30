@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :messages
+  has_many :addressee_messages, class_name: "Message", foreign_key: "addressee_id"
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -45,6 +47,16 @@ class User < ApplicationRecord
       user_id == self.id or user_id.in? self.patient_ids
     else
       false
+    end
+  end
+
+  def messages_users
+    if self.is_a? Admin
+      User.all
+    elsif self.is_a? Dietician
+      User.where(id: (self.patients + Admin.all).pluck(:id))
+    elsif self.is_a? Patient
+      User.where(id: [self.dietician_id] + self.addressee_messages.pluck(:user_id))
     end
   end
 

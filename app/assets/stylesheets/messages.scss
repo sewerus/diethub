@@ -1,0 +1,74 @@
+#main-messages {
+  background-image: url("pomegranade.jpg");
+}
+
+#main-messages #content {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.messages-table {
+  .contact-data-tr {
+    .contact-data-td {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 10px;
+      min-width: 400px;
+    }
+  }
+  .button-link {
+    padding: 3px;
+    width: auto;
+  }
+}
+
+.message-box-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 5px;
+  a {
+    color: white;
+  }
+}
+
+.messages {
+  border: 1px dashed darkolivegreen;
+  box-shadow: 0 0 3px darkolivegreen;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 10px;
+}
+
+.message-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px dashed darkolivegreen;
+  .message-content {
+    width: 100%;
+    &.addressee {
+      text-align: right !important;
+    }
+    &.user {
+      text-align: left !important;
+    }
+  }
+  a {
+    color: white;
+  }
+}
+
+.messages-description {
+  padding: 5px;
+  text-align: left;
+  border-bottom: 1px dashed darkolivegreen;
+}
+
+.new-message {
+  width: 100%;
+  .contact-data-td {
+    width: 100% !important;
+  }
+}

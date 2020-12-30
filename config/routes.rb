@@ -101,4 +101,9 @@ Rails.application.routes.draw do
   resources :measurement_files, only: [:destroy]
   post '/measurement_files/upload_for_measurement' => 'measurement_files#upload_for_measurement', as: :upload_for_measurement
 
+  #messages
+  resources :messages, except: [:show, :new, :create]
+  get '/messages/new/:id' => 'messages#new', as: :new_message
+  patch '/messages' => 'messages#create', as: :create_message
+  get '/messages/read/:id' => 'messages#set_messages_as_read', as: :set_messages_as_read
 end

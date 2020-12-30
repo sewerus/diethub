@@ -1,0 +1,31 @@
+<div id="main-messages" class="main-frame">
+  <div id="content">
+    <h2>Twoje wiadomości</h2>
+    <h5>Nieodebrane wiadomości: <%= current_user.addressee_messages.unread.count %></h5>
+
+    <%= form_for_filterrific @filterrific do |f| %>
+
+        <div class="contact-data-table">
+          <div class="contact-data-tr">
+            <div class="contact-data-td">
+              Szukaj:
+            </div>
+            <div class="contact-data-td">
+              Imię i nazwisko<br>
+              <%= f.text_field(
+                      :search_name,
+                      class: 'filterrific-periodically-observed', size: 11
+                  ) %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+
+    <div id="filterrific_results">
+      <%= render(
+            partial: "messages/users_list",
+            locals: {users: @users}
+        ) %>
+    </div>
+  </div>
+</div>

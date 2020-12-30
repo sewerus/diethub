@@ -1,0 +1,15 @@
+<%= form_for message, url: create_message_path, validate: true, method: :patch, remote: true do |f| %>
+    <div class="edit-contact-data-table new-message">
+      <div class="contact-data-tr">
+        <div class="contact-data-td">
+          <%= f.text_area :content %>
+        </div>
+      </div>
+      <div class="contact-data-tr">
+        <div class="contact-data-td button-link">
+            <%= f.hidden_field :addressee_id, value: @user.id %>
+            <%= f.submit "Wyślij" %>
+        </div>
+      </div>
+    </div>
+<% end %>

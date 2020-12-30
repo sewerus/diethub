@@ -1,0 +1,23 @@
+<div class="message-box-title">
+  <%= link_to user.full_name, users_path(user) %>
+</div>
+
+<div class="messages">
+  <% messages.each do |message| %>
+      <div class="message" id="message_<%= message.id %>">
+        <%= render(
+                partial: "messages/message",
+                locals: {message: message}
+            ) %>
+      </div>
+  <% end %>
+
+
+  <div id="messages_button_<%= user.id %>">
+    <%= render(
+        partial: "messages/messages_button",
+        locals: {user: user, read_all: messages.where(addressee_id: current_user.id).unread.empty?}
+        ) %>
+  </div>
+
+</div>

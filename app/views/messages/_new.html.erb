@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="myModalLabel">Nowa wiadomość do <%= link_to @user.full_name, user_path(@user) %></h4>
+  <button type="button" class="close" data-dismiss="modal">x</button>
+</div>
+
+<div class="modal-body user-show">
+
+  <%= render(
+          partial: "messages/new_form",
+          locals: {message: message}
+      ) %>
+
+</div>
