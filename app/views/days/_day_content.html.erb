@@ -16,11 +16,11 @@
                           ) %>
                     </div>
                 <% end %>
-                <%= render(
-                        partial: "trainings/list",
-                        locals: {date: day, user: user, hour: hour}
-                    ) %>
               <% end %>
+              <%= render(
+                      partial: "trainings/list",
+                      locals: {date: day, user: user, hour: hour}
+                  ) %>
             </div>
 
           </div>
