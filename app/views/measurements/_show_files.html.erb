@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">x</button>
+</div>
+
+<div class="modal-body user-show" style="width: 100%">
+
+  <% measurement.measurement_files.each do |file| %>
+      <div class="day-part-description measurement-file" id="measurement_file_<%= file.id %>">
+        <%= image_tag(file.measurement_file.url) %>
+      </div>
+  <% end %>
+
+</div>

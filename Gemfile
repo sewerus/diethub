@@ -81,6 +81,10 @@ gem 'rails_sortable'
 gem 'simple_calendar', "~> 2.0"
 gem 'carrierwave', '~> 2.0'
 gem 'dropzonejs-rails'
+gem 'chartkick', '3.2.1'
+gem 'groupdate'
+gem 'bootstrap-datepicker-rails'
+gem 'datejs-rails'
 
 group :development do
   gem 'better_errors'

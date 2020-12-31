@@ -50,6 +50,62 @@ class Day < ApplicationRecord
     end
   end
 
+  def calories
+    result = 0
+    self.day_parts.each do |day_part|
+      day_part.day_part_meals.where(eaten: true).each do |day_part_meal|
+        result += day_part_meal.meal.calories
+      end
+    end
+    result
+  end
+
+  def fat
+    result = 0
+    self.day_parts.each do |day_part|
+      day_part.day_part_meals.where(eaten: true).each do |day_part_meal|
+        result += day_part_meal.meal.fat
+      end
+    end
+    result
+  end
+
+  def carbo
+    result = 0
+    self.day_parts.each do |day_part|
+      day_part.day_part_meals.where(eaten: true).each do |day_part_meal|
+        result += day_part_meal.meal.carbo
+      end
+    end
+    result
+  end
+
+  def protein
+    result = 0
+    self.day_parts.each do |day_part|
+      day_part.day_part_meals.where(eaten: true).each do |day_part_meal|
+        result += day_part_meal.meal.protein
+      end
+    end
+    result
+  end
+
+  def eaten_meals
+    result = 0
+    self.day_parts.each do |day_part|
+      result += day_part.day_part_meals.where(eaten: true).count
+    end
+    result
+  end
+
+  def all_meals
+    result = 0
+    self.day_parts.each do |day_part|
+      result += day_part.day_part_meals.count
+    end
+    result
+  end
+
   def self.day_names
     ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela"]
   end

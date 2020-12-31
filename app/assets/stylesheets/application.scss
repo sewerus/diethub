@@ -16,6 +16,7 @@
  *= require select2-bootstrap
  *= require simple_calendar
  *= require dropzone/basic
+ *= require bootstrap-datepicker
  */
 
 @import "bootstrap";
@@ -124,10 +125,10 @@ a {
   text-shadow: 0 0 5px black, 0 0 7px black, 0 0 9px black;
   transition-duration: 4s;
 
-  &:hover {
-    width: calc(95% - 60px);
-    transition-duration: 4s;
-  }
+  //&:hover {
+  //  width: calc(95% - 60px);
+  //  transition-duration: 4s;
+  //}
 }
 
 #next-content {

@@ -96,6 +96,7 @@ Rails.application.routes.draw do
   get '/measurements/new/:user_id/:date' => 'measurements#new', as: :new_measurement
   patch '/measurements' => 'measurements#create', as: :create_measurement
   patch '/measurements/:id' => 'measurements#update', as: :update_measurement
+  get '/measurements/:id/show_files' => 'measurements#show_files', as: :show_measurement_files
   
   #measurement_files
   resources :measurement_files, only: [:destroy]
@@ -106,4 +107,15 @@ Rails.application.routes.draw do
   get '/messages/new/:id' => 'messages#new', as: :new_message
   patch '/messages' => 'messages#create', as: :create_message
   get '/messages/read/:id' => 'messages#set_messages_as_read', as: :set_messages_as_read
+
+  #charts
+  get '/charts/:id' => 'charts#show', as: :show_charts
+  get '/charts/:id/calories(/:start_date/:end_date)' => 'charts#calories', as: :calories_chart
+  get '/charts/:id/fat(/:start_date/:end_date)' => 'charts#fat', as: :fat_chart
+  get '/charts/:id/carbo(/:start_date/:end_date)' => 'charts#carbo', as: :carbo_chart
+  get '/charts/:id/protein(/:start_date/:end_date)' => 'charts#protein', as: :protein_chart
+  get '/charts/:id/sleep(/:start_date/:end_date)' => 'charts#sleep', as: :sleep_chart
+  get '/charts/:id/trainings(/:start_date/:end_date)' => 'charts#trainings', as: :trainings_chart
+  get '/charts/:id/weight(/:start_date/:end_date)' => 'charts#weight', as: :weight_chart
+  get '/charts/:id/plan(/:start_date/:end_date)' => 'charts#plan', as: :plan_chart
 end

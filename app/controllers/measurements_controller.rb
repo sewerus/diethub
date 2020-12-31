@@ -1,5 +1,5 @@
 class MeasurementsController < ApplicationController
-  before_action :set_measurement, only: [:show, :edit, :update, :destroy]
+  before_action :set_measurement, only: [:show, :show_files, :edit, :update, :destroy]
   before_action :set_patient, only: [:new]
   before_action :set_date, only: [:new]
   before_action :check_access, except: [:new, :create]
@@ -26,6 +26,9 @@ class MeasurementsController < ApplicationController
   end
 
   def show
+  end
+
+  def show_files
   end
 
   def edit

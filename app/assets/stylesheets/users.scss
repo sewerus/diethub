@@ -36,6 +36,13 @@
     margin-bottom: 20px;
   }
 
+  #content {
+    &:hover {
+      width: calc(95% - 60px);
+      transition-duration: 4s;
+    }
+  }
+
   input[type=email], input[type=password] {
     background-color: transparent;
     min-width: 200px;

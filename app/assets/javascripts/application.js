@@ -23,4 +23,8 @@
 //= require select2
 //= require rails.validations
 //= require dropzone
+//= require chartkick
+//= require Chart.bundle
+//= require bootstrap-datepicker
+//= require date
 //= require_tree .

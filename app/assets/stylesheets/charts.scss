@@ -1,0 +1,25 @@
+#main-charts {
+  background-image: url("pomegranade_2.jpg");
+}
+
+#main-charts #content {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+#user-charts {
+  width: 100%;
+  .contact-data-td {
+    width: 100%;
+  }
+}
+
+.chart-fields {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.chart-field {
+  max-width: 150px;
+}

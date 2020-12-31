@@ -1,0 +1,112 @@
+<div id="main-charts" class="main-frame">
+  <div id="content">
+    <h2>Dieta: statystyki dla <%= link_to @patient.full_name, patient_path(@patient) %></h2>
+
+    <div class="contact-data-table" id="user-charts" data-user-id="<%= @patient.id %>">
+
+      <div class="contact-data-tr">
+        <div class="contact-data-td" id="weight">
+          <h5 class="centering">
+            Masa ciała:
+          </h5>
+          <%= column_chart weight_chart_path(@patient), suffix: "kg" %>
+          <%= render partial: "charts/date_fields" %>
+        </div>
+      </div>
+
+      <div class="contact-data-tr">
+        <div class="contact-data-td" id="fotos">
+          <h5 class="centering">
+            Przesłane zdjęcia
+          </h5>
+          <div class="contact-data-table">
+            <div class="contact-data-tr">
+              <% @patient.measurements.each do |measurement| %>
+                  <% next if measurement.measurement_files.empty? %>
+                  <div class="contact-data-td">
+                    <%= measurement.date.strftime("%d.%m.%Y") %><br>
+                    <%= link_to show_measurement_files_path(measurement), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window'} do %>
+                        <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+                        Pokaż ( <%= measurement.measurement_files.count.to_s %> )
+                  <% end %>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-data-tr">
+        <div class="contact-data-td" id="trainings">
+          <h5 class="centering">
+            Treningi:
+          </h5>
+          <%= column_chart trainings_chart_path(@patient), suffix: "min" %>
+          <%= render partial: "charts/date_fields" %>
+        </div>
+      </div>
+
+      <div class="contact-data-tr">
+        <div class="contact-data-td" id="plan">
+          <h5 class="centering">
+            Zjedzone posiłki:
+          </h5>
+          <%= column_chart plan_chart_path(@patient), suffix: "%" %>
+          <%= render partial: "charts/date_fields" %>
+        </div>
+      </div>
+
+      <div class="contact-data-tr">
+        <div class="contact-data-td" id="calories">
+          <h5 class="centering">
+            Kalorie:
+          </h5>
+          <%= area_chart calories_chart_path(@patient), suffix: "kcal" %>
+          <%= render partial: "charts/date_fields" %>
+        </div>
+      </div>
+
+      <div class="contact-data-tr">
+        <div class="contact-data-td" id="fat">
+          <h5 class="centering">
+            Tłuszcze:
+          </h5>
+          <%= area_chart fat_chart_path(@patient), suffix: "g" %>
+          <%= render partial: "charts/date_fields" %>
+        </div>
+      </div>
+
+      <div class="contact-data-tr">
+        <div class="contact-data-td" id="carbo">
+          <h5 class="centering">
+            Węglowodany:
+          </h5>
+          <%= area_chart carbo_chart_path(@patient), suffix: "g" %>
+          <%= render partial: "charts/date_fields" %>
+        </div>
+      </div>
+
+      <div class="contact-data-tr">
+        <div class="contact-data-td" id="protein">
+          <h5 class="centering">
+            Białko:
+          </h5>
+          <%= area_chart protein_chart_path(@patient), suffix: "g" %>
+          <%= render partial: "charts/date_fields" %>
+        </div>
+      </div>
+
+      <div class="contact-data-tr">
+        <div class="contact-data-td" id="sleep">
+          <h5 class="centering">
+            Czas snu:
+          </h5>
+          <%= column_chart sleep_chart_path(@patient), suffix: "h" %>
+          <%= render partial: "charts/date_fields" %>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

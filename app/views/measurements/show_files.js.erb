@@ -1,0 +1,5 @@
+$("#modal-window").find(".modal-content").html("<%= j (render(
+                  partial: 'measurements/show_files',
+                  locals: {measurement: @measurement}
+              )) %>");
+$("#modal-window").modal();
