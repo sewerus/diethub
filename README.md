@@ -73,7 +73,7 @@ For the Administrator:
 ![Navigatin menu for admin](./readme_images/nav_menu_admin.png)
 
 For a dietitian:
-![Navigatin menu for dietitian](./readme_images/nav_menu_dietitian.png)
+![Navigatin menu for dietitian](./readme_images/nav_menu_dietician.png)
 
 For the patient:
 ![Navigatin menu for patient](./readme_images/nav_menu_patient.png)
@@ -147,10 +147,10 @@ Replacing a meal with a meal from a different template:
 ![Changing day part](./readme_images/day_part_change.png)   
 
 To add weight measurements and hours of sleep:
-![Measurement](./readme_images/measurement.png)   
+![Measurement](./readme_images/measurement_new.png)   
 
 Adding workouts:
-![Training](./readme_images/training.png)   
+![Training](./readme_images/training_new.png)   
 
 
 ### Statistics
