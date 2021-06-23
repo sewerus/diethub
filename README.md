@@ -70,6 +70,7 @@ bootstrap and bootstrap-glyphicons - gems that allow you to use ready-made style
 ### The navigation menu
 
 For the Administrator:
+
 ![Navigatin menu for admin](./readme_images/nav_menu_admin.png)
 
 For a dietitian:
@@ -78,7 +79,7 @@ For a dietitian:
 For the patient:
 ![Navigatin menu for patient](./readme_images/nav_menu_patient.png)
 
-4.1 Users
+### Users
 
 List:
 ![Users list](./readme_images/users_list.png)
